@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gradle-demo.iml" filepath="$PROJECT_DIR$/gradle-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tiris_library/tiris_library.iml" filepath="$PROJECT_DIR$/tiris_library/tiris_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coeus-alarmClock.iml" filepath="$PROJECT_DIR$/coeus-alarmClock.iml" />
     </modules>
   </component>
 </project>

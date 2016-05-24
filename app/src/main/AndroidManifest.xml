@@ -20,7 +20,6 @@
 
         <activity android:name=".GlobalActivity" />
         <activity android:name=".SingleActivity" />
-        <activity android:name=".TestRirisActivity"/>
 
         <activity android:name=".cache.AboutActivity" />
         <activity android:name=".cache.CacheMainActivity" />

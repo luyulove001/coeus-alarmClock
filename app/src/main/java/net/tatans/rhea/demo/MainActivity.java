@@ -22,11 +22,7 @@ public class MainActivity extends BaseActivity {
         TatansStartActivity(SingleActivity.class);
     }
 
-    @OnClick(R.id.bt_tiris)
-    public void btTiris(){
-        TatansStartActivity(TestRirisActivity.class);
-    }
-    @OnClick(R.id.bt_cache)
+    @OnClick({R.id.bt_cache,R.id.bt_tiris})
     public void btCache(){
         TatansStartActivity(CacheMainActivity.class);
     }

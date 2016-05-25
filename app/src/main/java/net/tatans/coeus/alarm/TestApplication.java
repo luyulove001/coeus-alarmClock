@@ -1,4 +1,4 @@
-package net.tatans.rhea.demo;
+package net.tatans.coeus.alarm;
 
 
 import android.content.res.Configuration;

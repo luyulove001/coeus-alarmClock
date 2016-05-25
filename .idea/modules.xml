@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coeus-alarmClock.iml" filepath="$PROJECT_DIR$/coeus-alarmClock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coeus-alarmclock.iml" filepath="$PROJECT_DIR$/coeus-alarmclock.iml" />
     </modules>
   </component>
 </project>

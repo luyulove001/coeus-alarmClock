@@ -1,13 +1,11 @@
 <component name="libraryTable">
   <library name="coeus-network-5.4.0-SNAPSHOT">
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/res" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/jars/libs/Msc.jar!/" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://D:/TBISAndroidEnvironment/gradle-2.8/caches/modules-2/files-2.1/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/29fdbf9310822423fcc8a026dde56f68eb4b4193/coeus-network-5.4.0-SNAPSHOT-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

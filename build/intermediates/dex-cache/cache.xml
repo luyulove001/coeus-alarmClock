@@ -2,39 +2,11 @@
 <items version="2" >
 
     <item
-        jar="D:\workspace\gradle-demo\app\build\intermediates\exploded-aar\gradle-demo\tiris_library\unspecified\jars\classes.jar"
+        jar="E:\project\coeus-alarmclock\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\5.4.0-SNAPSHOT\jars\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="6e23f4b44c1539fc0d72eb96b2d60209f7fbe7bd">
-        <dex dex="D:\workspace\gradle-demo\app\build\intermediates\pre-dexed\debug\classes-4ce9768306139b54493c3037c61c2532fed17da2.jar" />
-    </item>
-    <item
-        jar="D:\workspace\gradle-demo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
-        <dex dex="D:\workspace\gradle-demo\app\build\intermediates\pre-dexed\debug\classes-517927d2031788e751f3636f5730b0c8f4a5babf.jar" />
-    </item>
-    <item
-        jar="D:\workspace\gradle-demo\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\2.4.0-SNAPSHOT\jars\libs\Msc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="85a46b29703ef8930a92d2fdea8ff336275c7ab2">
-        <dex dex="D:\workspace\gradle-demo\app\build\intermediates\pre-dexed\debug\Msc-e6a0583e8f6dbf94ce2e97472ddb14ae372b9320.jar" />
-    </item>
-    <item
-        jar="D:\TBISAndroidEnvironment\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="D:\workspace\gradle-demo\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-aed381bade4ec77f543d46ada4d62330a182051f.jar" />
-    </item>
-    <item
-        jar="D:\workspace\gradle-demo\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\2.4.0-SNAPSHOT\jars\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="0837ea7cf1806d9fe1bee23e3388e27af077d0a5">
-        <dex dex="D:\workspace\gradle-demo\app\build\intermediates\pre-dexed\debug\classes-7b11046e982ad1f2fcbb22c932fa54e79f2b5d08.jar" />
+        sha1="51f77f1a795338ab0726723ecd62da9a7a7b1bec">
+        <dex dex="E:\project\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\classes-90879de5c8b47aa1a90458f822a41b7a9b94db62.jar" />
     </item>
 
 </items>

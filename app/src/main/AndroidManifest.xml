@@ -10,12 +10,14 @@
         android:label="${app_label}"
         android:theme="@android:style/Theme.NoTitleBar"
         android:supportsRtl="true">
-        <activity android:name="net.tatans.coeus.alarm.AlarmTestActivity">
+        <activity android:name="net.tatans.coeus.alarm.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ClockActivity"/>
 
         <receiver
             android:name="net.tatans.coeus.alarm.OneShotAlarm"

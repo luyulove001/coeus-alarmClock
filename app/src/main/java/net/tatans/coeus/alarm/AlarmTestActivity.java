@@ -10,7 +10,6 @@ import android.widget.Button;
 
 import net.tatans.coeus.network.tools.BaseActivity;
 import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.alarm.R;
 import net.tatans.rhea.network.view.ContentView;
 
 import java.util.Calendar;

@@ -2,11 +2,32 @@
 <items version="2" >
 
     <item
-        jar="E:\project\coeus-alarmclock\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\5.4.0-SNAPSHOT\jars\classes.jar"
+        jar="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\5.4.0-SNAPSHOT\jars\libs\Msc.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85a46b29703ef8930a92d2fdea8ff336275c7ab2">
+        <dex dex="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\Msc-1a76d659b05da3312e713cca8b030ffe64fa7b07.jar" />
+    </item>
+    <item
+        jar="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\classes-c7a38f689716938c68c5542e92f1d125427a1d99.jar" />
+    </item>
+    <item
+        jar="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\exploded-aar\net.tatans.coeus\coeus-network\5.4.0-SNAPSHOT\jars\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="51f77f1a795338ab0726723ecd62da9a7a7b1bec">
-        <dex dex="E:\project\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\classes-90879de5c8b47aa1a90458f822a41b7a9b94db62.jar" />
+        <dex dex="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\classes-ad50d6a77a3f33aa621e81c216fb277eb8611c5f.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudio2.1.1\SDK\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="E:\workspace\android_studion\2.0DOCK\Dock2.0\coeus-alarmclock\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-8f350c82c73e2149d431245e6dcc17c23d573cb1.jar" />
     </item>
 
 </items>

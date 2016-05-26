@@ -2,8 +2,8 @@
   <library name="coeus-network-5.4.0-SNAPSHOT">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/jars/libs/Msc.jar!/" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/net.tatans.coeus/coeus-network/5.4.0-SNAPSHOT/jars/libs/Msc.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

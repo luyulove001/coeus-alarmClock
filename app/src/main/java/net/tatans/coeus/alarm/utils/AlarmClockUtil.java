@@ -26,7 +26,7 @@ public class AlarmClockUtil {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         // 根据用户选择的时间来设置Calendar对象
-        c.set(Calendar.HOUR, hour);
+        c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);                //设置闹钟的秒数
         c.set(Calendar.MILLISECOND, 0);            //设置闹钟的毫秒数

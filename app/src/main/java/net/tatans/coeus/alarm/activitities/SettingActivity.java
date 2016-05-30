@@ -41,13 +41,9 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void initData() {
-        boolean isExist = TatansPreferences.contains(Const.KEY_ALARM_IN_SILENT_MODE);
-        if (isExist){
-            boolean isFlage = (Boolean)TatansPreferences.get(Const.KEY_ALARM_IN_SILENT_MODE,true);
-            refresh(isFlage,false);
-        }else{
-            refresh(true,false);
-        }
+        boolean isFlage = (Boolean)TatansPreferences.get(Const.KEY_ALARM_IN_SILENT_MODE,true);
+        refresh(isFlage,false);
+
         /**初始化信息*/
         String timeStop = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_TIME,Const.KEY_TEN_MINUTE_STOP);
         if(timeStop.equals("0")){
@@ -87,7 +83,7 @@ public class SettingActivity extends BaseActivity {
     /**按键设置*/
     @OnClick(R.id.alarm_key_setting)
     public void alarm_key_setting(){
-//        TatansStartActivity(XxxActivity.class);
+        TatansStartActivity(KeySettingActivity.class);
     }
 
 

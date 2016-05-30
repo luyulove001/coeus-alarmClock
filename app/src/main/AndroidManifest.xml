@@ -21,13 +21,8 @@
 
         <activity android:name=".ClockActivity"/>
         <activity android:name=".activitities.PublicListActivity"/>
+        <activity android:name=".activitities.KeySettingActivity"/>
 
-        <receiver
-            android:name="net.tatans.coeus.alarm.OneShotAlarm"
-            android:process=":remote" />
-        <receiver
-            android:name="net.tatans.coeus.alarm.RepeatingAlarm"
-            android:process=":remote" />
     </application>
 
 </manifest>

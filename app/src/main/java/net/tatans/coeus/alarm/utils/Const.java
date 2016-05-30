@@ -15,4 +15,6 @@ public class Const {
     public static final String KEY_TEN_MINUTE_STOP = "10";
     public static final String KEY_ALARM_BELL_INTERVAL_TIME = "alarm_bell_interval_time";/**用于存储稍后响铃时间*/
     public static final String[] BELL_INTERVAL_TIME_LIST = {"1","5","10","15","20","25","30"};/**稍后响铃列表*/
+    public static final String KEY_CODE = "key_code";/**按键设置*/
+
 }

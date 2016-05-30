@@ -8,9 +8,10 @@ import net.tatans.coeus.network.tools.TatansApplication;
  * Yuriy create at 2016/5/26 16:19
  */
 public class AlarmClockApplication  extends TatansApplication{
+    public static final String PREFERENCES = "AlarmClock";
     @Override
     public void onCreate() {
         super.onCreate();
-        setAppSpeaker();
+//        setAppSpeaker();
     }
 }

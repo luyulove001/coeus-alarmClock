@@ -64,7 +64,7 @@
     <string name="minute">"1 分钟"</string>
     <string name="minutes">"<xliff:g id="MINUTES">%s</xliff:g> 分钟"</string>
     <string name="every_day">"每天"</string>
-    <string name="never">"一律不"</string>
+    <string name="never">"只响一次"</string>
     <string name="day_concat">", "</string>
     <string name="clock_instructions">"选择要显示的时钟。"</string>
     <string name="analog_gadget">"模拟时钟"</string>
@@ -88,5 +88,5 @@
         <item msgid="6048861883552402852">"25"</item>
         <item msgid="2740866721232379791">"30"</item>
     </string-array>
-    <string name="alarm_klaxon_service_desc">"在 DeskClock 中设置的闹钟铃声播放服务。"</string>
+    <string name="alarm_klaxon_service_desc">"在天坦闹钟中设置的闹钟铃声播放服务。"</string>
 </resources>

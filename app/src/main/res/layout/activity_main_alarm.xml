@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/start_time"
+        android:id="@+id/add_alarm_clock"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
         android:focusable="true"
@@ -20,7 +20,6 @@
             android:background="@mipmap/iconfont_tianjia" />
 
         <TextView
-            android:id="@+id/tv_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
@@ -37,7 +36,7 @@
         android:background="#fff" />
 
     <LinearLayout
-        android:id="@+id/setting"
+        android:id="@+id/alarm_clock_setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
         android:focusable="true"
@@ -51,7 +50,6 @@
             android:background="@mipmap/icon_set" />
 
         <TextView
-            android:id="@+id/tv_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
@@ -68,7 +66,7 @@
         android:background="#fff" />
 
     <ListView
-        android:id="@+id/lv_countdown_time"
+        android:id="@+id/lv_alarm_clock_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

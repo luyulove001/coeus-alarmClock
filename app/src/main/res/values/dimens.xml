@@ -11,4 +11,8 @@
     <dimen name="list_item_height">55dp</dimen>
     <dimen name="open_icon_width">46.5dp</dimen>
     <dimen name="open_icon_height">28dp</dimen>
+    <dimen name="btn_confirm_width">343dp</dimen>
+    <dimen name="btn_confirm_height">55dp</dimen>
+    <dimen name="select_item_width">22dp</dimen>
+    <dimen name="select_item_height">16dp</dimen>
 </resources>

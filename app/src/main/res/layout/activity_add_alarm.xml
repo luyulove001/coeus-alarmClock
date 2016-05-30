@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_alarm_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/time">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/time"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/time_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="00:00"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
+
+        <RelativeLayout
+            android:id="@+id/layout_repeat"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:contentDescription="@string/alarm_repeat">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/alarm_repeat"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/alarm_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="@string/every_day"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
+
+        <RelativeLayout
+            android:id="@+id/layout_alert"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:contentDescription="@string/alert">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/alert"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="晨光"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
+
+        <RelativeLayout
+            android:id="@+id/layout_alarm_vibrate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:contentDescription="@string/alarm_vibrate">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/alarm_vibrate"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/switch_vibrate"
+                android:layout_width="@dimen/open_icon_width"
+                android:layout_height="@dimen/open_icon_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@mipmap/open_icon" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="@dimen/btn_confirm_width"
+            android:layout_height="@dimen/btn_confirm_height"
+            android:layout_marginTop="4dp"
+            android:background="@mipmap/btn_confirm"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>

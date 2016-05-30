@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/img_check"
-            android:layout_width="@dimen/default_icon_width"
-            android:layout_height="@dimen/default_icon_height"
+            android:layout_width="@dimen/select_item_width"
+            android:layout_height="@dimen/select_item_height"
             android:layout_marginLeft="18dp"/>
 
         <TextView

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:focusable="false"
-            android:text="@string/alarm_add"
+            android:text="@string/add_alarm"
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:focusable="false"
-            android:text="@string/alarm_set"
+            android:text="@string/set_alarm"
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>

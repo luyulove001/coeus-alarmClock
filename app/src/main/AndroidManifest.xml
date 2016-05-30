@@ -3,6 +3,8 @@
     package="net.tatans.coeus.alarm">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name="net.tatans.coeus.alarm.activitities.AlarmClockApplication"
         android:allowBackup="true"
@@ -10,7 +12,7 @@
         android:label="${app_label}"
         android:theme="@android:style/Theme.NoTitleBar"
         android:supportsRtl="true">
-        <activity android:name="net.tatans.coeus.alarm.MainActivity">
+        <activity android:name="net.tatans.coeus.alarm.activitities.SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -18,6 +20,7 @@
         </activity>
 
         <activity android:name=".ClockActivity"/>
+        <activity android:name=".activitities.PublicListActivity"/>
 
         <receiver
             android:name="net.tatans.coeus.alarm.OneShotAlarm"

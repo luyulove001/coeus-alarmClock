@@ -4,4 +4,14 @@
     <string name="text_tts_source">宁波天坦智慧电子科技股份有限公司是一家专门致力于面向视障人士的无障碍信息系统研发与运维的科技公司，公司业务涵盖智能设备研发、智能软件系统设计以及软件平台运维等，2014年初成立于宁波高新区研发园，注册资本600万元。公司始终坚持“以技术创新实现产品价值”的理念，鼓励员工进行产品与技术创新，目前已经获得多项自主知识产权。天坦人时刻秉承“光明，责任，使命”的经营理念，立志为全球视力障碍人士提供全方位的互联网信息无障碍服务，公司愿景：以信息技术彻底改变视障人士的生活方式。</string>
     <string name="alarm_set">设置闹钟</string>
     <string name="alarm_add">添加闹钟</string>
+    <string name="alarm_in_silent_mode">静音下响铃</string>
+    <string name="alarm_in_silent_mode_open">静音下响铃已打开</string>
+    <string name="alarm_in_silent_mode_close">静音下响铃已关闭</string>
+    <string name="alarm_in_silent_time">响铃时间</string>
+    <string name="alarm_in_silent_time_stop">10分钟后停止</string>
+    <string name="alarm_snooze_duration">稍后再响间隔</string>
+    <string name="alarm_snooze_duration_time">10分钟</string>
+    <string name="alarm_key_setting">按键设置</string>
+    <string name="alarm_key_setting_txt">设置闹钟铃声时音量、电源的作用</string>
+
 </resources>

@@ -20,11 +20,11 @@
         android:contentDescription="@string/btn_confirm"
         android:visibility="gone">
 
-        <Button
+        <ImageView
             android:layout_width="@dimen/btn_confirm_width"
             android:layout_height="@dimen/btn_confirm_height"
             android:layout_marginTop="4dp"
-            android:background="@mipmap/btn_confirm"
+            android:src="@mipmap/btn_confirm"
             android:gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>

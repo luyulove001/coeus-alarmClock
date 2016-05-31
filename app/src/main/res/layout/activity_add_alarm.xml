@@ -46,34 +46,37 @@
             android:layout_marginLeft="17dp"
             android:background="#fff" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layout_repeat"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/alarm_repeat">
+            android:contentDescription="@string/alarm_repeat"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="25dp"
                 android:text="@string/alarm_repeat"
                 android:textColor="#fff"
                 android:textSize="25sp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/alarm_repeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:singleLine="true"
                 android:text="@string/never"
                 android:textColor="#fff"
                 android:textSize="25sp" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -155,11 +158,11 @@
         android:contentDescription="@string/btn_confirm"
         android:gravity="center">
 
-        <Button
+        <ImageView
             android:layout_width="@dimen/btn_confirm_width"
             android:layout_height="@dimen/btn_confirm_height"
             android:layout_marginTop="4dp"
-            android:background="@mipmap/btn_confirm"
+            android:src="@mipmap/btn_confirm"
             android:gravity="center_vertical" />
     </LinearLayout>
 

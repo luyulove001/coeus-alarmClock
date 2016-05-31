@@ -21,21 +21,30 @@
             android:authorities="net.tatans.coeus.alarm"
             android:exported="false" />
 
-        <activity android:name="net.tatans.coeus.alarm.activitities.AddAlarmActivity">
+        <activity android:name="net.tatans.coeus.alarm.activitities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ClockActivity"/>
-        <activity android:name=".activitities.SettingActivity"/>
-        <activity android:name=".activitities.PublicListActivity"/>
-        <activity android:name=".activitities.KeySettingActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".activitities.SetAlarmRepeatActivity"/>
-        <activity android:name=".activitities.CustomWeekActivity"/>
-        <activity android:name=".activitities.SetAlarmTimeHourActivity"/>
+        <activity android:name=".ClockActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.PublicListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.KeySettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.SetAlarmRepeatActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.CustomWeekActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.AddAlarmActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".receiver.AlarmReceiver">
             <intent-filter>

@@ -5,7 +5,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
@@ -26,7 +26,7 @@ import net.tatans.rhea.network.view.ViewIoc;
 public class SettingActivity extends BaseActivity {
 
     @ViewIoc(R.id.img_open) private ImageView imgOpen;/**静音响铃开关*/
-    @ViewIoc(R.id.alarm_in_silent_mode) private LinearLayout alarm_in_silent_mode;/**静音响铃*/
+    @ViewIoc(R.id.alarm_in_silent_mode) private RelativeLayout alarm_in_silent_mode;/**静音响铃*/
     @ResInject(id=R.string.alarm_in_silent_mode_open) String MUTE_OPEN;/**静音响铃打开*/
     @ResInject(id=R.string.alarm_in_silent_mode_close) String MUTE_CLOSE;/**静音响铃关闭*/
     @ViewIoc(R.id.tv_alarm_snooze_duration) private TextView tv_alarm_snooze_duration;/**稍后响铃时间*/

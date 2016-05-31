@@ -19,11 +19,13 @@ import net.tatans.rhea.network.view.ViewIoc;
 public class SetAlarmRepeatActivity extends BaseActivity {
     @ViewIoc(R.id.lv_bell_time)
     private ListView lv_bell_time;
+    private String mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lv_bell_time.setAdapter(new AlarmRepeatAdapter(SetAlarmRepeatActivity.this));
+        mark = getIntent().getStringExtra("mark");
+        lv_bell_time.setAdapter(new AlarmRepeatAdapter(SetAlarmRepeatActivity.this,mark));
     }
 
     @Override

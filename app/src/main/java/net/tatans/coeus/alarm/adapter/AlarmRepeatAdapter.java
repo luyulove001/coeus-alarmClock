@@ -20,8 +20,9 @@ import net.tatans.coeus.network.tools.TatansPreferences;
  * Created by Administrator on 2016/5/30.
  */
 public class AlarmRepeatAdapter extends BaseAdapter {
-    private String[] listData = Const.REPEAT_MODEL_LIST;
+    private String[] listData;
     private Context mContext;
+    private String mark;
 
     final static class ViewHolder {
         private LinearLayout lyt_repeat;
@@ -29,8 +30,14 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         private TextView tv_repeat;
     }
 
-    public AlarmRepeatAdapter(Context ctx) {
+    public AlarmRepeatAdapter(Context ctx,String mk) {
         this.mContext = ctx;
+        this.mark = mk;
+        if (mk.equals(Const.REQUEST_REPEAT+"")){
+            listData = Const.REPEAT_MODEL_LIST;
+        }else{
+            listData = Const.BELL_NAME;
+        }
     }
 
     @Override
@@ -68,13 +75,24 @@ public class AlarmRepeatAdapter extends BaseAdapter {
     }
 
     private void setSelect(ViewHolder vh, int position) {
-        String repeat_model = (String) TatansPreferences.get(Const.REPEAT_PREF, "0");
-        if (repeat_model.equals(position + "")) {
-            vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
-            vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
-        } else {
-            vh.lyt_repeat.setContentDescription(listData[position]);
-            vh.iv_isSelect.setBackgroundResource(R.color.black);
+        if (mark.equals(Const.REQUEST_REPEAT+"")){
+            String repeat_model = (String) TatansPreferences.get(Const.REPEAT_PREF, "0");
+            if (repeat_model.equals(position + "")) {
+                vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
+                vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
+            } else {
+                vh.lyt_repeat.setContentDescription(listData[position]);
+                vh.iv_isSelect.setBackgroundResource(R.color.black);
+            }
+        }else{
+            int bellID = (Integer) TatansPreferences.get(Const.BELL_URI, 0);
+            if (bellID == position){
+                vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
+                vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
+            }else{
+                vh.lyt_repeat.setContentDescription(listData[position]);
+                vh.iv_isSelect.setBackgroundResource(R.color.black);
+            }
         }
     }
 
@@ -91,15 +109,20 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         public void onClick(View view) {
             viewH.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
             viewH.lyt_repeat.setContentDescription(listData[mPosition] + ",已选中");
-            TatansPreferences.put(Const.REPEAT_PREF, mPosition + "");
-            if (mPosition == listData.length - 1) {
-                ((Activity) mContext).startActivityForResult(new Intent(mContext, CustomWeekActivity.class), 1);
-            } else {
-                Intent i = new Intent();
-                i.putExtra("repeat_model", listData[mPosition]);
-                ((Activity) mContext).setResult(Activity.RESULT_OK, i);
-                ((Activity) mContext).finish();
+            Intent i = new Intent();
+            if (mark.equals(Const.REQUEST_REPEAT+"")){
+                TatansPreferences.put(Const.REPEAT_PREF, mPosition + "");
+                if (mPosition == listData.length - 1) {
+                    ((Activity) mContext).startActivityForResult(new Intent(mContext, CustomWeekActivity.class), 1);
+                } else {
+                    i.putExtra("repeat_model", listData[mPosition]);
+                }
+            }else{
+                TatansPreferences.put(Const.BELL_URI, mPosition);
+                i.putExtra("bell_uri", listData[mPosition]);
             }
+            ((Activity) mContext).setResult(Activity.RESULT_OK,i);
+            ((Activity) mContext).finish();
         }
     }
 }

@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity{
     /**添加闹钟*/
     @OnClick(R.id.add_alarm_clock)
     private void addAlarmClock(){
-
+        TatansStartActivity(AddAlarmActivity.class);
     }
 
     /**闹钟设置*/

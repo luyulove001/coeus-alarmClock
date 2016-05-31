@@ -47,13 +47,17 @@ public class AddAlarmActivity extends BaseActivity {
 
     @OnClick(R.id.layout_repeat)
     public void setAlarm_repeat() {
+        intent.putExtra("mark", Const.REQUEST_REPEAT+"");
         intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
         startActivityForResult(intent, Const.REQUEST_REPEAT);
     }
 
     @OnClick(R.id.layout_alert)
     public void setAlert() {
-        TatansStartActivity(SetAlarmRepeatActivity.class);
+        intent.putExtra("mark", Const.REQUEST_ALERT+"");
+        intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
+        startActivityForResult(intent, Const.REQUEST_ALERT);
+//        TatansStartActivity(SetAlarmRepeatActivity.class);
     }
 
     @OnClick(R.id.layout_alarm_vibrate)
@@ -83,7 +87,7 @@ public class AddAlarmActivity extends BaseActivity {
         } else if (requestCode == Const.REQUEST_REPEAT && resultCode == Activity.RESULT_OK) {
             alarm_repeat.setText(data.getStringExtra("repeat_model"));
         } else if (requestCode == Const.REQUEST_ALERT && resultCode == Activity.RESULT_OK) {
-
+            alert.setText(data.getStringExtra("bell_uri"));
         }
     }
 

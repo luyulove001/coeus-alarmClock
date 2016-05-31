@@ -9,7 +9,6 @@ import android.widget.TextView;
 import net.tatans.coeus.alarm.*;
 import net.tatans.coeus.alarm.utils.Const;
 import net.tatans.coeus.network.tools.BaseActivity;
-import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.rhea.network.event.OnClick;
 import net.tatans.rhea.network.view.ContentView;
 import net.tatans.rhea.network.view.ViewIoc;
@@ -21,16 +20,16 @@ import net.tatans.rhea.network.view.ViewIoc;
 public class AddAlarmActivity extends BaseActivity {
 
     @ViewIoc(R.id.switch_vibrate)
-    private ImageView switch_vibrate;
+    private ImageView switch_vibrate;//震动
 
     @ViewIoc(R.id.alarm_repeat)
-    private TextView alarm_repeat;
+    private TextView alarm_repeat;//重复
 
     @ViewIoc(R.id.alert)
-    private TextView alert;
+    private TextView alert;//铃声
 
     @ViewIoc(R.id.time_alarm)
-    private TextView alarm_time;
+    private TextView alarm_time;//闹钟时间
 
     private boolean btnOnOff = false;
     private Intent intent = new Intent();
@@ -42,7 +41,8 @@ public class AddAlarmActivity extends BaseActivity {
 
     @OnClick(R.id.layout_alarm_time)
     public void setTime_alarm() {
-        TatansStartActivity(net.tatans.coeus.alarm.MainActivity.class);
+        intent.setClass(AddAlarmActivity.this, SetAlarmTimeHourActivity.class);
+        startActivityForResult(intent, Const.REQUEST_TIME);
     }
 
     @OnClick(R.id.layout_repeat)
@@ -83,7 +83,7 @@ public class AddAlarmActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Const.REQUEST_TIME && resultCode == Activity.RESULT_OK) {
-
+            alarm_time.setText(data.getStringExtra("alarm_time"));
         } else if (requestCode == Const.REQUEST_REPEAT && resultCode == Activity.RESULT_OK) {
             alarm_repeat.setText(data.getStringExtra("repeat_model"));
         } else if (requestCode == Const.REQUEST_ALERT && resultCode == Activity.RESULT_OK) {

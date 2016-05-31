@@ -1,5 +1,6 @@
 package net.tatans.coeus.alarm.activitities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,6 +85,10 @@ public class KeySettingActivity extends BaseActivity{
             llt_wait.setContentDescription("");
             llt_close.setContentDescription("关闭已选中");
             if (isToast) TatansToast.showAndCancel("关闭已选中");
+        }
+        if (isToast){
+            this.setResult(Activity.RESULT_OK);
+            this.finish();
         }
     }
 }

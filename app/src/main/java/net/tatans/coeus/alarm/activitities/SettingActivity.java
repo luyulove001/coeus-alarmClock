@@ -83,7 +83,9 @@ public class SettingActivity extends BaseActivity {
     /**按键设置*/
     @OnClick(R.id.alarm_key_setting)
     public void alarm_key_setting(){
-        TatansStartActivity(KeySettingActivity.class);
+        Intent intent=new Intent();
+        intent.setClass(this, KeySettingActivity.class);
+        startActivityForResult(intent,1);
     }
 
 

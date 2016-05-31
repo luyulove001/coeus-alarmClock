@@ -3,8 +3,13 @@
     package="net.tatans.coeus.alarm">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
     <application
         android:name="net.tatans.coeus.alarm.activitities.AlarmClockApplication"
         android:allowBackup="true"
@@ -12,7 +17,11 @@
         android:label="${app_label}"
         android:theme="@android:style/Theme.NoTitleBar"
         android:supportsRtl="true">
-        <activity android:name="net.tatans.coeus.alarm.activitities.MainActivity">
+        <provider android:name=".provider.AlarmProvider"
+            android:authorities="net.tatans.coeus.alarm"
+            android:exported="false" />
+
+        <activity android:name="net.tatans.coeus.alarm.activitities.AddAlarmActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,7 +32,34 @@
         <activity android:name=".activitities.SettingActivity"/>
         <activity android:name=".activitities.PublicListActivity"/>
         <activity android:name=".activitities.KeySettingActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".activitities.SetAlarmRepeatActivity"/>
+        <activity android:name=".activitities.CustomWeekActivity"/>
+        <activity android:name=".activitities.SetAlarmTimeHourActivity"/>
 
+        <receiver android:name=".receiver.AlarmReceiver">
+            <intent-filter>
+                <action android:name="net.tatans.coeus.alarm.ALARM_ALERT" />
+                <action android:name="alarm_killed" />
+                <action android:name="cancel_snooze" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.AlarmInitReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.AlarmKlaxon"
+            android:description="@string/alarm_klaxon_service_desc">
+            <intent-filter>
+                <action android:name="net.tatans.coeus.alarm.ALARM_ALERT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

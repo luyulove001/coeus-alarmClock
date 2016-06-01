@@ -1,4 +1,4 @@
-package net.tatans.coeus.alarm.activitities;
+package net.tatans.coeus.alarm.activities;
 
 import net.tatans.coeus.network.tools.TatansApplication;
 

@@ -16,7 +16,7 @@ import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.Log;
 
-import net.tatans.coeus.alarm.activitities.AlarmClockApplication;
+import net.tatans.coeus.alarm.activities.AlarmClockApplication;
 import net.tatans.coeus.alarm.bean.Alarm;
 
 import java.util.Calendar;

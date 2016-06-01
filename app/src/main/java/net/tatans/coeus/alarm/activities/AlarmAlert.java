@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.tatans.coeus.alarm.activitities;
+package net.tatans.coeus.alarm.activities;
 
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;

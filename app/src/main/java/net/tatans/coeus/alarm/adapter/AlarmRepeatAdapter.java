@@ -3,7 +3,6 @@ package net.tatans.coeus.alarm.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
-import net.tatans.coeus.alarm.activitities.CustomWeekActivity;
+import net.tatans.coeus.alarm.activities.CustomWeekActivity;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.Const;
-import net.tatans.coeus.network.tools.TatansPreferences;
 
 /**
  * Created by Administrator on 2016/5/30.
@@ -26,6 +24,8 @@ public class AlarmRepeatAdapter extends BaseAdapter {
     private Context mContext;
     private String mark;
     private Intent intent;
+    private Alarm.DaysOfWeek daysOfWeek;
+    private int repeat_model;
 
     final static class ViewHolder {
         private LinearLayout lyt_repeat;
@@ -37,10 +37,19 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         this.mContext = ctx;
         this.intent = mk;
         mark = intent.getStringExtra("mark");
+        daysOfWeek = (Alarm.DaysOfWeek) intent.getSerializableExtra("dayOfWeek");
         if (mark.equals(Const.REQUEST_REPEAT + "")) {
             listData = Const.REPEAT_MODEL_LIST;
         }else{
             listData = Const.BELL_NAME;
+        }
+        for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
+            if (Const.REPEAT_MODEL_LIST[i].equals(daysOfWeek.toString(ctx, true))) {
+                repeat_model = i;
+                break;
+            } else {
+                repeat_model = Const.REPEAT_MODEL_LIST.length - 1;
+            }
         }
     }
 
@@ -80,8 +89,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
 
     private void setSelect(ViewHolder vh, int position) {
         if (mark.equals(Const.REQUEST_REPEAT+"")){
-            int repeat = intent.getIntExtra("repeat", 0);
-            if (repeat == position) {
+            if (repeat_model == position) {
                 vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
                 vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
             } else {
@@ -116,7 +124,9 @@ public class AlarmRepeatAdapter extends BaseAdapter {
             Intent i = new Intent();
             if (mark.equals(Const.REQUEST_REPEAT+"")){
                 if (mPosition == listData.length - 1) {
-                    ((Activity) mContext).startActivityForResult(new Intent(mContext, CustomWeekActivity.class), 1);
+                    i.setClass(mContext, CustomWeekActivity.class);
+                    i.putExtra("dayOfWeek", daysOfWeek);
+                    ((Activity) mContext).startActivityForResult(i, 1);
                 } else {
 //                    i.putExtra("repeat_model", listData[mPosition]);
                     Alarm.DaysOfWeek daysOfWeek = new Alarm.DaysOfWeek(0);

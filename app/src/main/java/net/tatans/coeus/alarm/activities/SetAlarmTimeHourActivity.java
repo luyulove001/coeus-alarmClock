@@ -1,4 +1,4 @@
-package net.tatans.coeus.alarm.activitities;
+package net.tatans.coeus.alarm.activities;
 
 import android.app.Activity;
 import android.content.Intent;

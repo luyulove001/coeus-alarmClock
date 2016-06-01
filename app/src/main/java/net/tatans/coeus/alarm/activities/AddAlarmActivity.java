@@ -1,4 +1,4 @@
-package net.tatans.coeus.alarm.activitities;
+package net.tatans.coeus.alarm.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -95,14 +95,7 @@ public class AddAlarmActivity extends BaseActivity {
     public void setAlarm_repeat() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_REPEAT + "");
-        for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
-            if (Const.REPEAT_MODEL_LIST[i].equals(newDaysOfWeek.toString(getApplicationContext(), true))) {
-                intent.putExtra("repeat", i);
-                break;
-            } else {
-                intent.putExtra("repeat", Const.REPEAT_MODEL_LIST.length - 1);
-            }
-        }
+        intent.putExtra("dayOfWeek", newDaysOfWeek);
         intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
         startActivityForResult(intent, Const.REQUEST_REPEAT);
     }
@@ -125,7 +118,6 @@ public class AddAlarmActivity extends BaseActivity {
 
     @OnClick(R.id.lyt_confirm)
     public void confirm() {
-        // TODO: 2016/5/30 将预设属性保存到数据库 provider  值从后面的其他页面传回本页面
         /**
          * tv_alarm_repeat --> alarm.daysOfWeek
          * tv_alarm_time --> alarm.time//暂时不管  alarm.hour  alarm.minute

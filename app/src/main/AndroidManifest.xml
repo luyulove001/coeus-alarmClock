@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
     <application
-        android:name="net.tatans.coeus.alarm.activitities.AlarmClockApplication"
+        android:name="net.tatans.coeus.alarm.activities.AlarmClockApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="${app_label}"
@@ -21,7 +21,7 @@
             android:authorities="net.tatans.coeus.alarm"
             android:exported="false" />
 
-        <activity android:name="net.tatans.coeus.alarm.activitities.MainActivity"
+        <activity android:name="net.tatans.coeus.alarm.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,25 +31,25 @@
 
         <activity android:name=".ClockActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.SettingActivity"
+        <activity android:name=".activities.SettingActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.PublicListActivity"
+        <activity android:name=".activities.PublicListActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.KeySettingActivity"
+        <activity android:name=".activities.KeySettingActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.SetAlarmRepeatActivity"
+        <activity android:name=".activities.SetAlarmRepeatActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.CustomWeekActivity"
+        <activity android:name=".activities.CustomWeekActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.AddAlarmActivity"
+        <activity android:name=".activities.AddAlarmActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.SetAlarmTimeHourActivity"
+        <activity android:name=".activities.SetAlarmTimeHourActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.SetAlarmTimeMinuteActivity"
+        <activity android:name=".activities.SetAlarmTimeMinuteActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activitities.AlarmAlert"
+        <activity android:name=".activities.AlarmAlert"
             android:screenOrientation="portrait"/>
 
 

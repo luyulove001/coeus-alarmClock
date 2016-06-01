@@ -26,7 +26,7 @@ import android.os.Parcel;
 import android.util.Log;
 
 import net.tatans.coeus.alarm.R;
-import net.tatans.coeus.alarm.activitities.AlarmAlert;
+import net.tatans.coeus.alarm.activities.AlarmAlert;
 import net.tatans.coeus.alarm.utils.AlarmAlertWakeLock;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.service.AlarmKlaxon;

@@ -111,12 +111,7 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
                 hour += 1;
             }
         }
-        //时间显示为两位数
-        String h = "0" + hour;
-        h = h.substring(h.length() - 2, h.length());
-        String m = "0" + minute;
-        m = m.substring(m.length() - 2, m.length());
-        return h + ":" + m;
+        return AddAlarmActivity.changeTimeStyle(hour) + ":" + AddAlarmActivity.changeTimeStyle(minute);
     }
 
     public int getHour() {

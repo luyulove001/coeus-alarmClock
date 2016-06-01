@@ -3,6 +3,7 @@ package net.tatans.coeus.alarm.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
     private String[] listData;
     private Context mContext;
     private String mark;
+    private Intent intent;
 
     final static class ViewHolder {
         private LinearLayout lyt_repeat;
@@ -31,10 +33,11 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         private TextView tv_repeat;
     }
 
-    public AlarmRepeatAdapter(Context ctx,String mk) {
+    public AlarmRepeatAdapter(Context ctx, Intent mk) {
         this.mContext = ctx;
-        this.mark = mk;
-        if (mk.equals(Const.REQUEST_REPEAT+"")){
+        this.intent = mk;
+        mark = intent.getStringExtra("mark");
+        if (mark.equals(Const.REQUEST_REPEAT + "")) {
             listData = Const.REPEAT_MODEL_LIST;
         }else{
             listData = Const.BELL_NAME;
@@ -77,8 +80,8 @@ public class AlarmRepeatAdapter extends BaseAdapter {
 
     private void setSelect(ViewHolder vh, int position) {
         if (mark.equals(Const.REQUEST_REPEAT+"")){
-            String repeat_model = (String) TatansPreferences.get(Const.REPEAT_PREF, "0");
-            if (repeat_model.equals(position + "")) {
+            int repeat = intent.getIntExtra("repeat", 0);
+            if (repeat == position) {
                 vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
                 vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
             } else {
@@ -86,7 +89,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                 vh.iv_isSelect.setBackgroundResource(R.color.black);
             }
         }else{
-            int bellID = (Integer) TatansPreferences.get(Const.BELL_URI, 0);
+            int bellID = Integer.valueOf(intent.getStringExtra("alert"));
             if (bellID == position){
                 vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
                 vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
@@ -112,7 +115,6 @@ public class AlarmRepeatAdapter extends BaseAdapter {
             viewH.lyt_repeat.setContentDescription(listData[mPosition] + ",已选中");
             Intent i = new Intent();
             if (mark.equals(Const.REQUEST_REPEAT+"")){
-                TatansPreferences.put(Const.REPEAT_PREF, mPosition + "");
                 if (mPosition == listData.length - 1) {
                     ((Activity) mContext).startActivityForResult(new Intent(mContext, CustomWeekActivity.class), 1);
                 } else {
@@ -137,7 +139,6 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                     i.putExtra("days_of_week", daysOfWeek);
                 }
             }else{
-                TatansPreferences.put(Const.BELL_URI, mPosition);
                 i.putExtra("bell_uri", listData[mPosition]);
                 i.putExtra("bell_position", mPosition + "");
             }

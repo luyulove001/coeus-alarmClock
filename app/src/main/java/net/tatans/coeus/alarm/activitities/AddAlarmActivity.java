@@ -66,14 +66,21 @@ public class AddAlarmActivity extends BaseActivity {
 
     private void updateAlarmView(Alarm alarm) {
         // TODO: 2016/6/1  需要改成08:05格式
-        tv_alarm_time.setText(alarm.hour + ":" + alarm.minutes); 
+        tv_alarm_time.setText(changeTimeStyle(alarm.hour) + ":" + changeTimeStyle(alarm.minutes));
         switch_vibrate.setImageResource(alarm.vibrate ? R.mipmap.open_icon : R.mipmap.close_icon);
         tv_alarm_repeat.setText(alarm.daysOfWeek.toString(getApplicationContext(), true));
         mHour = alarm.hour;
         mMinute = alarm.minutes;
         newDaysOfWeek = alarm.daysOfWeek;
-        mLabel = "0";
-        // TODO: 2016/5/31 alert 界面更新
+        mLabel = alarm.getLabelOrDefault(getApplicationContext());
+        btnOnOff = alarm.vibrate;
+        tv_alert.setText(Const.BELL_NAME[Integer.valueOf(mLabel)]);
+    }
+
+    public static String changeTimeStyle(int time) {
+        String h = "0" + time;
+        h = h.substring(h.length() - 2, h.length());
+        return h;
     }
 
     @OnClick(R.id.layout_alarm_time)
@@ -88,7 +95,14 @@ public class AddAlarmActivity extends BaseActivity {
     public void setAlarm_repeat() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_REPEAT + "");
-        // TODO: 2016/5/31 保存preference有问题，需要把daysOfWeek传过去
+        for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
+            if (Const.REPEAT_MODEL_LIST[i].equals(newDaysOfWeek.toString(getApplicationContext(), true))) {
+                intent.putExtra("repeat", i);
+                break;
+            } else {
+                intent.putExtra("repeat", Const.REPEAT_MODEL_LIST.length - 1);
+            }
+        }
         intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
         startActivityForResult(intent, Const.REQUEST_REPEAT);
     }
@@ -97,6 +111,7 @@ public class AddAlarmActivity extends BaseActivity {
     public void setAlert() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_ALERT + "");
+        intent.putExtra("alert", mLabel);
         intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
         startActivityForResult(intent, Const.REQUEST_ALERT);
 //        TatansStartActivity(SetAlarmRepeatActivity.class);

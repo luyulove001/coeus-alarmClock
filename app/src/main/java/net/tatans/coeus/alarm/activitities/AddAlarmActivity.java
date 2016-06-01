@@ -119,8 +119,8 @@ public class AddAlarmActivity extends BaseActivity {
 
     @OnClick(R.id.layout_alarm_vibrate)
     public void setSwitch_vibrate() {
-        switch_vibrate.setImageResource(btnOnOff ? R.mipmap.open_icon : R.mipmap.close_icon);
         btnOnOff = !btnOnOff;
+        switch_vibrate.setImageResource(btnOnOff ? R.mipmap.open_icon : R.mipmap.close_icon);
     }
 
     @OnClick(R.id.lyt_confirm)

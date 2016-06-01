@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.activitities.CustomWeekActivity;
+import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.Const;
 import net.tatans.coeus.network.tools.TatansPreferences;
 
@@ -115,11 +116,30 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                 if (mPosition == listData.length - 1) {
                     ((Activity) mContext).startActivityForResult(new Intent(mContext, CustomWeekActivity.class), 1);
                 } else {
-                    i.putExtra("repeat_model", listData[mPosition]);
+//                    i.putExtra("repeat_model", listData[mPosition]);
+                    Alarm.DaysOfWeek daysOfWeek = new Alarm.DaysOfWeek(0);
+                    switch (mPosition) {
+                        case 0:
+                            daysOfWeek = new Alarm.DaysOfWeek(0);//只响一次
+                            break;
+                        case 1:
+                            daysOfWeek = new Alarm.DaysOfWeek(0x7f);//每天
+                            break;
+                        case 2:
+                            // TODO: 2016/5/31 法定工作日
+                            break;
+                        case 3:
+                            daysOfWeek = new Alarm.DaysOfWeek(0x1f);//周一到周五
+                            break;
+                        default:
+                            break;
+                    }
+                    i.putExtra("days_of_week", daysOfWeek);
                 }
             }else{
                 TatansPreferences.put(Const.BELL_URI, mPosition);
                 i.putExtra("bell_uri", listData[mPosition]);
+                i.putExtra("bell_position", mPosition + "");
             }
             ((Activity) mContext).setResult(Activity.RESULT_OK,i);
             ((Activity) mContext).finish();

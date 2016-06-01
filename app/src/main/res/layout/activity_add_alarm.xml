@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/alarm_repeat"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,6 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:singleLine="true"
+                android:ellipsize="end"
+                android:maxEms="8"
                 android:text="@string/never"
                 android:textColor="#fff"
                 android:textSize="25sp" />

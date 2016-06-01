@@ -16,6 +16,7 @@
 
 package net.tatans.coeus.alarm.bean;
 
+import java.io.Serializable;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
@@ -30,6 +31,7 @@ import android.util.Log;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.utils.Alarms;
+import net.tatans.coeus.alarm.utils.Const;
 
 public final class Alarm implements Parcelable {
 
@@ -242,7 +244,7 @@ public final class Alarm implements Parcelable {
      * 0x20: Saturday
      * 0x40: Sunday
      */
-    public static final class DaysOfWeek {
+    public static final class DaysOfWeek implements Serializable{
 
         private static int[] DAY_MAP = new int[] {
             Calendar.MONDAY,
@@ -257,7 +259,7 @@ public final class Alarm implements Parcelable {
         // Bitmask of all repeating days
         private int mDays;
 
-        DaysOfWeek(int days) {
+        public DaysOfWeek(int days) {
             mDays = days;
         }
 
@@ -275,6 +277,9 @@ public final class Alarm implements Parcelable {
                 return context.getText(R.string.every_day).toString();
             }
 
+            if (mDays == 0x1f) {
+                return Const.REPEAT_MODEL_LIST[3];
+            }
             // count selected days
             int dayCount = 0, days = mDays;
             while (days > 0) {

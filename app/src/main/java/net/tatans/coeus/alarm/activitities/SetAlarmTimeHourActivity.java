@@ -25,6 +25,7 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tv_custom_hour_set.setText(getIntent().getStringExtra("time_set"));
     }
 
     @OnClick(R.id.lyt_confirm)

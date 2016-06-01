@@ -34,9 +34,9 @@ public class ClockActivity extends Activity {
         setContentView(R.layout.activity_clock);
         mediaPlayer = new MediaPlayer();
         try {
-            int id = (Integer) TatansPreferences.get(Const.BELL_URI, 0);
-            setDataSourceFromResource(getResources(), mediaPlayer, Const.BELL_ID[id]);
-            //mediaPlayer.setDataSource(this, getSystemDefultRingtoneUri());/**系统默认音效*/
+//            int id = (Integer) TatansPreferences.get(Const.BELL_URI, 0);
+//            setDataSourceFromResource(getResources(), mediaPlayer, Const.BELL_ID[id]);
+            mediaPlayer.setDataSource(this, getSystemDefultRingtoneUri());/**系统默认音效*/
             startAlarm(mediaPlayer);
         } catch (IOException e) {
             e.printStackTrace();

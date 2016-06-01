@@ -49,6 +49,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activitities.SetAlarmTimeMinuteActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activitities.AlarmAlert"
+            android:screenOrientation="portrait"/>
+
 
         <receiver android:name=".receiver.AlarmReceiver">
             <intent-filter>

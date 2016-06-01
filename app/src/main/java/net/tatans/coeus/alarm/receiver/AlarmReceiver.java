@@ -16,13 +16,17 @@
 
 package net.tatans.coeus.alarm.receiver;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcel;
 import android.util.Log;
 
+import net.tatans.coeus.alarm.R;
+import net.tatans.coeus.alarm.activitities.AlarmAlert;
 import net.tatans.coeus.alarm.utils.AlarmAlertWakeLock;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.service.AlarmKlaxon;
@@ -122,47 +126,44 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Trigger a notification that, when clicked, will show the alarm alert
         // dialog. No need to check for fullscreen since this will always be
         // launched from a user action.
-//        Intent notify = new Intent(context, AlarmAlert.class);
-//        notify.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
-//        PendingIntent pendingNotify = PendingIntent.getActivity(context,
-//                alarm.id, notify, 0);
-//
-//        // Use the alarm's label or the default label as the ticker text and
-//        // main text of the notification.
-//        String label = alarm.getLabelOrDefault(context);
-////        Notification n = new Notification(R.drawable.stat_notify_alarm,
-////                label, alarm.time);
-////        n.setLatestEventInfo(context, label,
-////                context.getString(R.string.alarm_notify_text),
-////                pendingNotify);
-//        Notification n = new Notification.Builder(context).
-//                setAutoCancel(true)
-//                .setContentTitle(label)
-//                .setContentText(context.getString(R.string.alarm_notify_text))
-//                .setContentIntent(pendingNotify)
-//                .setSmallIcon(R.mipmap.icon_set)
-//                .setWhen(alarm.time).build();
-//        n.flags |= Notification.FLAG_SHOW_LIGHTS
-//                | Notification.FLAG_ONGOING_EVENT;
-//        n.defaults |= Notification.DEFAULT_LIGHTS;
-//
-//        // NEW: Embed the full-screen UI here. The notification manager will
-//        // take care of displaying it if it's OK to do so.
-//        Intent alarmAlert = new Intent(context, c);
-//        alarmAlert.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
-//        alarmAlert.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-//                | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-//        n.fullScreenIntent = PendingIntent.getActivity(context, alarm.id, alarmAlert, 0);
-//
-//        // Send the notification using the alarm id to easily identify the
-//        // correct notification.
-//        NotificationManager nm = getNotificationManager(context);
-//        nm.notify(alarm.id, n);
+        Intent notify = new Intent(context, AlarmAlert.class);
+        notify.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
+        PendingIntent pendingNotify = PendingIntent.getActivity(context, alarm.id, notify, 0);
+
+        // Use the alarm's label or the default label as the ticker text and
+        // main text of the notification.
+        String label = alarm.getLabelOrDefault(context);
+//        Notification n = new Notification(R.drawable.stat_notify_alarm,
+//                label, alarm.time);
+//        n.setLatestEventInfo(context, label,
+//                context.getString(R.string.alarm_notify_text),
+//                pendingNotify);
+        Notification n = new Notification.Builder(context).
+                setAutoCancel(true)
+                .setContentTitle("闹钟")
+                .setContentText(context.getString(R.string.alarm_notify_text))
+                .setContentIntent(pendingNotify)
+                .setSmallIcon(R.mipmap.icon_set)
+                .setWhen(alarm.time).build();
+        n.flags |= Notification.FLAG_SHOW_LIGHTS
+                | Notification.FLAG_ONGOING_EVENT;
+        n.defaults |= Notification.DEFAULT_LIGHTS;
+
+        // NEW: Embed the full-screen UI here. The notification manager will
+        // take care of displaying it if it's OK to do so.
+        Intent alarmAlert = new Intent(context, AlarmAlert.class);
+        alarmAlert.putExtra(Alarms.ALARM_INTENT_EXTRA, alarm);
+        alarmAlert.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+        n.fullScreenIntent = PendingIntent.getActivity(context, alarm.id, alarmAlert, 0);
+
+        // Send the notification using the alarm id to easily identify the
+        // correct notification.
+        NotificationManager nm = getNotificationManager(context);
+        nm.notify(alarm.id, n);
     }
 
     private NotificationManager getNotificationManager(Context context) {
-        return (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     private void updateNotification(Context context, Alarm alarm, int timeout) {

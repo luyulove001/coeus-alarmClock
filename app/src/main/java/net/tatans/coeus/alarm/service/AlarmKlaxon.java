@@ -39,6 +39,10 @@ import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.AlarmAlertWakeLock;
 import net.tatans.coeus.alarm.utils.Alarms;
+import net.tatans.coeus.alarm.utils.Const;
+import net.tatans.coeus.network.tools.TatansPreferences;
+
+import java.io.IOException;
 
 /**
  * Manages alarms and vibe. Runs as a service so that it can continue to play
@@ -202,14 +206,14 @@ public class AlarmKlaxon extends Service {
         Log.v("wangxianming", "AlarmKlaxon.play() " + alarm.id + " alert " + alarm.alert);
 
         if (!alarm.silent) {
-            Uri alert = alarm.alert;
-            // Fall back on the default alarm if the database does not have an
-            // alarm stored.
-            if (alert == null) {
-                alert = RingtoneManager.getDefaultUri(
-                        RingtoneManager.TYPE_ALARM);
-                Log.v("wangxianming", "Using default alarm: " + alert.toString());
-            }
+            /**系统闹钟铃声*/
+//            Uri alert = alarm.alert;
+//            // Fall back on the default alarm if the database does not have an
+//            // alarm stored.
+//            if (alert == null) {
+//                alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+//                Log.v("wangxianming", "Using default alarm: " + alert.toString());
+//            }
 
             // TODO: Reuse mMediaPlayer instead of creating a new one and/or use
             // RingtoneManager.
@@ -227,14 +231,18 @@ public class AlarmKlaxon extends Service {
             try {
                 // Check if we are in a call. If we are, use the in-call alarm
                 // resource at a low volume to not disrupt the call.
-                if (mTelephonyManager.getCallState()
-                        != TelephonyManager.CALL_STATE_IDLE) {
+                if (mTelephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE) {
                     Log.v("wangxianming", "Using the in-call alarm");
                     mMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
-                    setDataSourceFromResource(getResources(), mMediaPlayer,
-                            R.raw.in_call_alarm);
+                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.in_call_alarm);
                 } else {
-                    mMediaPlayer.setDataSource(this, alert);
+//                    mMediaPlayer.setDataSource(this, alert);
+                    int alertID = Integer.parseInt(alarm.label);
+                    try {
+                        setDataSourceFromResource(getResources(), mMediaPlayer, Const.BELL_ID[alertID]);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 startAlarm(mMediaPlayer);
             } catch (Exception ex) {
@@ -244,8 +252,7 @@ public class AlarmKlaxon extends Service {
                 try {
                     // Must reset the media player to clear the error state.
                     mMediaPlayer.reset();
-                    setDataSourceFromResource(getResources(), mMediaPlayer,
-                            R.raw.fallbackring);
+                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.fallbackring);
                     startAlarm(mMediaPlayer);
                 } catch (Exception ex2) {
                     // At this point we just don't play anything.

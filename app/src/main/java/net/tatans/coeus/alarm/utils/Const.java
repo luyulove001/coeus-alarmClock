@@ -26,6 +26,5 @@ public class Const {
     public static final String REPEAT_PREF = "repeat_pref";/**0,1,2,3,4 与重复模式对应 */
     public static final int[] BELL_ID = {R.raw.bell0,R.raw.bell1,R.raw.bell2,R.raw.bell3,R.raw.bell4,R.raw.bell5,R.raw.bell6,R.raw.bell7,R.raw.bell8};/**铃声 */
     public static final String[] BELL_NAME = {"晨光","晨曦","嘀嗒","黎明","每一天","鸟语花香","轻快","清新","跳跃"};/**名称 */
-    public static final String BELL_URI = "bell_uri";/**0~8 标记对应 BELL_ID[int] 铃声*/
 
 }

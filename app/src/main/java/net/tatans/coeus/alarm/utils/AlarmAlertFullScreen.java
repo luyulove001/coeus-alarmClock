@@ -55,7 +55,7 @@ public class AlarmAlertFullScreen extends Activity {
     protected static final String SCREEN_OFF = "screen_off";
 
     protected Alarm mAlarm;
-    private int mVolumeBehavior = 1;/**音量键设置*/
+    private int mVolumeBehavior = 0;/**音量键设置*/
 
     // Receives the ALARM_KILLED action from the AlarmKlaxon,
     // and also ALARM_SNOOZE_ACTION / ALARM_DISMISS_ACTION from other applications
@@ -86,11 +86,8 @@ public class AlarmAlertFullScreen extends Activity {
 
         // Get the volume/camera button behavior setting
         /**音量键设置*/
-//        final String vol =
-//                PreferenceManager.getDefaultSharedPreferences(this)
-//                        .getString(SettingsActivity.KEY_VOLUME_BEHAVIOR,
-//                                DEFAULT_VOLUME_BEHAVIOR);
-//        mVolumeBehavior = Integer.parseInt(vol);
+        String keyCode = (String)TatansPreferences.get(Const.KEY_CODE,"0");
+        mVolumeBehavior = Integer.parseInt(keyCode);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 

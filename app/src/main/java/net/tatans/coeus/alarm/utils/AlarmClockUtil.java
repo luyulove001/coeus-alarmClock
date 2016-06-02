@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 
 import net.tatans.coeus.alarm.ClockActivity;
-import net.tatans.coeus.alarm.activitities.MainActivity;
 import net.tatans.coeus.network.tools.TatansApplication;
 
 import java.util.Calendar;

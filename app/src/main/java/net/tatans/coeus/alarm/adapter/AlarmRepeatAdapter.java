@@ -40,16 +40,16 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         daysOfWeek = (Alarm.DaysOfWeek) intent.getSerializableExtra("dayOfWeek");
         if (mark.equals(Const.REQUEST_REPEAT + "")) {
             listData = Const.REPEAT_MODEL_LIST;
+            for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
+                if (Const.REPEAT_MODEL_LIST[i].equals(daysOfWeek.toString(ctx, true))) {
+                    repeat_model = i;
+                    break;
+                } else {
+                    repeat_model = Const.REPEAT_MODEL_LIST.length - 1;
+                }
+            }
         }else{
             listData = Const.BELL_NAME;
-        }
-        for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
-            if (Const.REPEAT_MODEL_LIST[i].equals(daysOfWeek.toString(ctx, true))) {
-                repeat_model = i;
-                break;
-            } else {
-                repeat_model = Const.REPEAT_MODEL_LIST.length - 1;
-            }
         }
     }
 
@@ -126,34 +126,36 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                 if (mPosition == listData.length - 1) {
                     i.setClass(mContext, CustomWeekActivity.class);
                     i.putExtra("dayOfWeek", daysOfWeek);
-                    ((Activity) mContext).startActivityForResult(i, 1);
+                    ((Activity) mContext).startActivityForResult(i, Const.REQUEST_CUSTOM_WEEK);
                 } else {
 //                    i.putExtra("repeat_model", listData[mPosition]);
-                    Alarm.DaysOfWeek daysOfWeek = new Alarm.DaysOfWeek(0);
+                    Alarm.DaysOfWeek daysofweek = new Alarm.DaysOfWeek(0);
                     switch (mPosition) {
                         case 0:
-                            daysOfWeek = new Alarm.DaysOfWeek(0);//只响一次
+                            daysofweek = new Alarm.DaysOfWeek(0);//只响一次
                             break;
                         case 1:
-                            daysOfWeek = new Alarm.DaysOfWeek(0x7f);//每天
+                            daysofweek = new Alarm.DaysOfWeek(0x7f);//每天
                             break;
                         case 2:
                             // TODO: 2016/5/31 法定工作日
                             break;
                         case 3:
-                            daysOfWeek = new Alarm.DaysOfWeek(0x1f);//周一到周五
+                            daysofweek = new Alarm.DaysOfWeek(0x1f);//周一到周五
                             break;
                         default:
                             break;
                     }
-                    i.putExtra("days_of_week", daysOfWeek);
+                    i.putExtra("days_of_week", daysofweek);
+                    ((Activity) mContext).setResult(Activity.RESULT_OK, i);
+                    ((Activity) mContext).finish();
                 }
             }else{
                 i.putExtra("bell_uri", listData[mPosition]);
                 i.putExtra("bell_position", mPosition + "");
+                ((Activity) mContext).setResult(Activity.RESULT_OK, i);
+                ((Activity) mContext).finish();
             }
-            ((Activity) mContext).setResult(Activity.RESULT_OK,i);
-            ((Activity) mContext).finish();
         }
     }
 }

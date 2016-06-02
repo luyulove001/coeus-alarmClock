@@ -203,7 +203,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 //        // We have to cancel the original notification since it is in the
 //        // ongoing section and we want the "killed" notification to be a plain
 //        // notification.
-//        nm.cancel(alarm.id);
+        nm.cancel(alarm.id);
 //        nm.notify(alarm.id, n);
     }
 }

@@ -7,6 +7,7 @@ import net.tatans.coeus.alarm.R;
  */
 public class Const {
 
+    public static final int MINUTE = 60*1000;/**1分钟*/
     public static final String KEY_MINUTE = "分钟";/**分钟*/
     public static final String KEY_MINUTE_STOP = KEY_MINUTE+"后停止";/**多少分钟后停止*/
     public static final String KEY_ALARM_IN_SILENT_MODE = "alarm_in_silent_mode";/**用于存储静音响铃开关*/

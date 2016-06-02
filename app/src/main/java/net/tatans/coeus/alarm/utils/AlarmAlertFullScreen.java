@@ -292,4 +292,12 @@ public class AlarmAlertFullScreen extends Activity {
         // so that the dialog is dismissed.
         return;
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

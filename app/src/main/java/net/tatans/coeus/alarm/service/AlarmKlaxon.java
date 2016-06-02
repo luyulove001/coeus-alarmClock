@@ -334,7 +334,9 @@ public class AlarmKlaxon extends Service {
         /**设置响铃时长*/
         String timStr = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_TIME,"10");
         int timeInt = Integer.parseInt(timStr);
-        mHandler.sendMessageDelayed(mHandler.obtainMessage(KILLER, alarm), timeInt * Const.MINUTE);
+        if (timeInt>0){
+            mHandler.sendMessageDelayed(mHandler.obtainMessage(KILLER, alarm), timeInt * Const.MINUTE);
+        }
     }
 
     private void disableKiller() {

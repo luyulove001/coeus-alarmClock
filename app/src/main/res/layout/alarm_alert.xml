@@ -18,39 +18,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="#FF1A1A1A">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:background="@drawable/dialog"
         android:orientation="vertical">
-
-        <TextView android:id="@+id/alertTitle"
-            style="?android:attr/textAppearanceLarge"
-            android:padding="5dip"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:scaleType="fitXY"
-            android:gravity="fill_horizontal"
-            android:src="@drawable/dialog_divider_horizontal_light"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"/>
 
         <net.tatans.coeus.alarm.utils.DigitalClock
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="30dip"
-            android:paddingBottom="30dip"
+            android:paddingTop="35dip"
+            android:paddingBottom="35dip"
             android:baselineAligned="true"
             android:focusable="true"
             android:gravity="center_horizontal"
@@ -73,28 +53,60 @@
 
         </net.tatans.coeus.alarm.utils.DigitalClock>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fff"/>
+
         <LinearLayout
+            android:id="@+id/snooze"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            style="@android:style/ButtonBar">
+            android:padding="25dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/snooze"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/alarm_alert_snooze_text" />
+            <ImageView
+                android:layout_width="@dimen/default_icon_width"
+                android:layout_height="@dimen/default_icon_height"
+                android:layout_marginLeft="18dp"
+                android:background="@mipmap/alarm_icon" />
 
-            <Button
-                android:id="@+id/dismiss"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/alarm_alert_dismiss_text" />
-
+            <TextView
+                android:id="@+id/tv_snooze_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:focusable="false"
+                android:text="@string/alarm_alert_snooze_text"
+                android:textColor="#fff"
+                android:textSize="30sp" />
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dismiss"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="@dimen/default_icon_width"
+                android:layout_height="@dimen/default_icon_height"
+                android:layout_marginLeft="18dp"
+                android:background="@mipmap/close_alarm" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:focusable="false"
+                android:text="@string/alarm_alert_dismiss_text"
+                android:textColor="#fff"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

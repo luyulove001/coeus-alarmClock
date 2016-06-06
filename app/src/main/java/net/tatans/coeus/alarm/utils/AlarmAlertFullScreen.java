@@ -79,6 +79,24 @@ public class AlarmAlertFullScreen extends Activity {
         }
     };
 
+    /**
+     * 用于实现电源键广播接收
+     */
+    private BroadcastReceiver mKeyReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals("ACTION_KEY_CODE")) {
+                String keyStr = (String) TatansPreferences.get(Const.KEY_CODE,"0");
+                if (keyStr.equals("1")){
+                    snooze();
+                }else if (keyStr.equals("2")){
+                    dismiss(false);
+                }
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -103,14 +121,20 @@ public class AlarmAlertFullScreen extends Activity {
                     | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
                     | WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON);
         }
-
         updateLayout();
+        initRegBroadcastReceiver();
+    }
 
-        // Register to get the alarm killed/snooze/dismiss intent.
+    /**广播注册*/
+    private void initRegBroadcastReceiver() {
         IntentFilter filter = new IntentFilter(Alarms.ALARM_KILLED);
         filter.addAction(Alarms.ALARM_SNOOZE_ACTION);
         filter.addAction(Alarms.ALARM_DISMISS_ACTION);
         registerReceiver(mReceiver, filter);
+        /**电源键广播注册*/
+        IntentFilter filterKey = new IntentFilter();
+        filterKey.addAction("ACTION_KEY_CODE");
+        registerReceiver(mKeyReceiver, filterKey);
     }
 
     private void updateLayout() {
@@ -241,6 +265,7 @@ public class AlarmAlertFullScreen extends Activity {
         Log.v("wangxianming", "AlarmAlert.onDestroy()");
         // No longer care about the alarm being killed.
         unregisterReceiver(mReceiver);
+        unregisterReceiver(mKeyReceiver);
     }
 
     @Override

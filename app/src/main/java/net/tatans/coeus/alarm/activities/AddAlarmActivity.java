@@ -41,7 +41,7 @@ public class AddAlarmActivity extends BaseActivity {
     private Intent intent;
     private Alarm mOriginalAlarm;//原闹钟若是添加闹钟，则为新闹钟
     private int mId;//判断ID是否为-1来判断是新闹钟还是已存在的闹钟
-    private String mLabel;
+    private String mLabel;//闹钟标签，暂时用来保存铃声
     private Alarm.DaysOfWeek newDaysOfWeek;
 
     @Override

@@ -98,4 +98,8 @@
         <item msgid="2740866721232379791">"30"</item>
     </string-array>
     <string name="alarm_klaxon_service_desc">"在天坦闹钟中设置的闹钟铃声播放服务。"</string>
+    <string name="close_alarm">"关闭闹钟"</string>
+    <string name="open_alarm">"开启闹钟"</string>
+    <string name="reset_alarm">"重设闹钟"</string>
+    <string name="del_alarm">"删除闹钟"</string>
 </resources>

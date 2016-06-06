@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.activities.AddAlarmActivity;
+import net.tatans.coeus.alarm.activities.AlarmOperateActivity;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.Alarms;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cly on 2016/6/3.
+ * 闹钟列表
  */
 public class AlarmListAdapter extends BaseAdapter {
     private Context mContext;
@@ -94,7 +95,7 @@ public class AlarmListAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
-            Intent i = new Intent(mContext, AddAlarmActivity.class);
+            Intent i = new Intent(mContext, AlarmOperateActivity.class);
             i.putExtra("alarm_id", alarms.get(mPosition).id);
             mContext.startActivity(i);
         }

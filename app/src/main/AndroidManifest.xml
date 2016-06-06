@@ -29,8 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ClockActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".activities.SettingActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.PublicListActivity"
@@ -48,6 +46,8 @@
         <activity android:name=".activities.SetAlarmTimeMinuteActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.AlarmAlert"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.AlarmOperateActivity"
             android:screenOrientation="portrait"/>
 
 

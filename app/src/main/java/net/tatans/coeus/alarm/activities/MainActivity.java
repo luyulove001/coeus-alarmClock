@@ -1,14 +1,10 @@
 package net.tatans.coeus.alarm.activities;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.adapter.AlarmListAdapter;
-import net.tatans.coeus.alarm.bean.Alarm;
-import net.tatans.coeus.alarm.utils.Alarms;
 import net.tatans.coeus.network.tools.BaseActivity;
 import net.tatans.rhea.network.event.OnClick;
 import net.tatans.rhea.network.view.ContentView;

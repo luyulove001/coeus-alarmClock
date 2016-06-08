@@ -72,10 +72,10 @@ public class CustomWeekAdapter extends BaseAdapter {
 
     private void setSelect(ViewHolder viewHolder, int position) {
         if (isSelect[position]) {
-            viewHolder.lyt_week.setContentDescription(listData[position] + "已选中");
+            viewHolder.lyt_week.setContentDescription(listData[position] + "。已选中");
             viewHolder.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
         } else {
-            viewHolder.lyt_week.setContentDescription(listData[position]);
+            viewHolder.lyt_week.setContentDescription(listData[position] + Const.NO_STR);
             viewHolder.iv_isSelect.setBackgroundResource(R.color.black);
         }
     }
@@ -92,11 +92,11 @@ public class CustomWeekAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             if (!daysOfWeek.getBooleanArray()[mPosition]) {
-                viewH.lyt_week.setContentDescription(listData[mPosition] + "已选中");
+                viewH.lyt_week.setContentDescription(listData[mPosition] + "。已选中");
                 viewH.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
                 daysOfWeek.set(mPosition, true);
             } else {
-                viewH.lyt_week.setContentDescription(listData[mPosition]);
+                viewH.lyt_week.setContentDescription(listData[mPosition] + Const.NO_STR);
                 viewH.iv_isSelect.setBackgroundResource(R.color.black);
                 daysOfWeek.set(mPosition, false);
             }

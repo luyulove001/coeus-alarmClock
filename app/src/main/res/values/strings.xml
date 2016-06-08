@@ -11,7 +11,7 @@
     <string name="alarm_snooze_duration_time">10分钟</string>
     <string name="alarm_key_setting">按键设置</string>
     <string name="alarm_key_setting_txt">设置闹钟铃声时音量、电源的作用</string>
-    <string name="btn_confirm">确定</string>
+    <string name="btn_confirm">确定。按钮</string>
     <string name="add_one_hour">增加一小时</string>
     <string name="minus_one_hour">减小一小时</string>
     <string name="add_five_hour">增加五小时</string>
@@ -102,4 +102,6 @@
     <string name="open_alarm">"开启闹钟"</string>
     <string name="reset_alarm">"重设闹钟"</string>
     <string name="del_alarm">"删除闹钟"</string>
+    <string name="repeat_title">"请选择重复规则"</string>
+    <string name="custom_week">"自定义"</string>
 </resources>

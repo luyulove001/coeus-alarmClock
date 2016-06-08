@@ -27,6 +27,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="18dp"
         android:text="@string/reset_alarm"
+        android:contentDescription="重设闹钟。按钮"
         android:textColor="@color/white"
         android:textSize="25sp" />
 
@@ -43,6 +44,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="18dp"
         android:text="@string/del_alarm"
+        android:contentDescription="删除闹钟。按钮"
         android:textColor="@color/white"
         android:textSize="25sp" />
 

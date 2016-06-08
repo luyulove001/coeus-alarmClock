@@ -90,19 +90,19 @@ public class AlarmRepeatAdapter extends BaseAdapter {
     private void setSelect(ViewHolder vh, int position) {
         if (mark.equals(Const.REQUEST_REPEAT+"")){
             if (repeat_model == position) {
-                vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
+                vh.lyt_repeat.setContentDescription(listData[position] + "。已选中");
                 vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
             } else {
-                vh.lyt_repeat.setContentDescription(listData[position]);
+                vh.lyt_repeat.setContentDescription(listData[position] + Const.NO_STR);
                 vh.iv_isSelect.setBackgroundResource(R.color.black);
             }
         }else{
             int bellID = Integer.valueOf(intent.getStringExtra("alert"));
             if (bellID == position){
-                vh.lyt_repeat.setContentDescription(listData[position] + "已选中");
+                vh.lyt_repeat.setContentDescription(listData[position] + "。已选中");
                 vh.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
             }else{
-                vh.lyt_repeat.setContentDescription(listData[position]);
+                vh.lyt_repeat.setContentDescription(listData[position] + Const.NO_STR);
                 vh.iv_isSelect.setBackgroundResource(R.color.black);
             }
         }
@@ -120,7 +120,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             viewH.iv_isSelect.setBackgroundResource(R.mipmap.icon_multiple_choice);
-            viewH.lyt_repeat.setContentDescription(listData[mPosition] + ",已选中");
+            viewH.lyt_repeat.setContentDescription(listData[mPosition] + "。已选中");
             Intent i = new Intent();
             if (mark.equals(Const.REQUEST_REPEAT+"")){
                 if (mPosition == listData.length - 1) {

@@ -31,6 +31,7 @@ public class CustomWeekActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(getString(R.string.custom_week));
         lyt_confirm.setVisibility(View.VISIBLE);
         adapter = new CustomWeekAdapter(getApplicationContext(), getIntent());
         lv_weekday.setAdapter(adapter);

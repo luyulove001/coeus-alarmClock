@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
@@ -23,6 +25,15 @@ import net.tatans.rhea.network.view.ViewIoc;
  */
 @ContentView(R.layout.activity_add_alarm)
 public class AddAlarmActivity extends BaseActivity {
+    //无障碍设置ContentDescription
+    @ViewIoc(R.id.layout_alarm_time)
+    private RelativeLayout layout_alarm_time;
+    @ViewIoc(R.id.layout_repeat)
+    private LinearLayout layout_repeat;
+    @ViewIoc(R.id.layout_alarm_vibrate)
+    private RelativeLayout layout_alarm_vibrate;
+    @ViewIoc(R.id.layout_alert)
+    private RelativeLayout layout_alert;
 
     @ViewIoc(R.id.switch_vibrate)
     private ImageView switch_vibrate;//震动
@@ -52,8 +63,10 @@ public class AddAlarmActivity extends BaseActivity {
         Alarm alarm = null;
         if (mId == -1) {
             alarm = new Alarm();
+            setTitle(getString(R.string.add_alarm));
         } else {
             alarm = Alarms.getAlarm(getContentResolver(), mId);
+            setTitle(getString(R.string.reset_alarm));
             // 防止空指针异常.
             if (alarm == null) {
                 finish();
@@ -65,16 +78,24 @@ public class AddAlarmActivity extends BaseActivity {
     }
 
     private void updateAlarmView(Alarm alarm) {
-        // TODO: 2016/6/1  需要改成08:05格式
         tv_alarm_time.setText(changeTimeStyle(alarm.hour) + ":" + changeTimeStyle(alarm.minutes));
+        layout_alarm_time.setContentDescription(getString(R.string.time) + "。"
+                + changeTimeStyle(alarm.hour) + ":" + changeTimeStyle(alarm.minutes));
         switch_vibrate.setImageResource(alarm.vibrate ? R.mipmap.open_icon : R.mipmap.close_icon);
+        layout_alarm_vibrate.setContentDescription(alarm.vibrate ?
+                getString(R.string.alarm_vibrate) + "。" + Const.YES_STR :
+                getString(R.string.alarm_vibrate) + "。" + Const.NO_STR);
         tv_alarm_repeat.setText(alarm.daysOfWeek.toString(getApplicationContext(), true));
+        layout_repeat.setContentDescription(getString(R.string.alarm_repeat) + "。"
+                + alarm.daysOfWeek.toString(getApplicationContext(), true));
         mHour = alarm.hour;
         mMinute = alarm.minutes;
         newDaysOfWeek = alarm.daysOfWeek;
         mLabel = alarm.getLabelOrDefault(getApplicationContext());
         btnOnOff = alarm.vibrate;
         tv_alert.setText(Const.BELL_NAME[Integer.valueOf(mLabel)]);
+        layout_alert.setContentDescription(getString(R.string.alert)
+                + Const.BELL_NAME[Integer.valueOf(mLabel)]);
     }
 
     public static String changeTimeStyle(int time) {

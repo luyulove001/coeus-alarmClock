@@ -15,7 +15,7 @@
             android:id="@+id/tv_custom_minute_set"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
-            android:layout_marginLeft="30dp"
+            android:paddingLeft="30dp"
             android:gravity="center_vertical"
             android:text="00:00"
             android:textColor="@color/white"

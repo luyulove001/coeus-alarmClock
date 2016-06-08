@@ -101,26 +101,26 @@ public class PublicListAdapter extends BaseAdapter{
         if (sing.equals(Const.KEY_ALARM_BELL_TIME)){
             String checkStr = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_TIME,"10");
             if (checkStr.equals(listData[posi]) && checkStr.equals("0")){
-                vH.bell_time.setContentDescription(Const.KEY_NEVER_STOP+",已选中");
+                vH.bell_time.setContentDescription(Const.KEY_NEVER_STOP+"。已选中");
                 vH.img_check.setBackgroundResource(R.mipmap.icon_multiple_choice);
             }else if (checkStr.equals(listData[posi]) && !checkStr.equals("0")){
-                vH.bell_time.setContentDescription(listData[posi]+"分钟,已选中");
+                vH.bell_time.setContentDescription(listData[posi]+"分钟。已选中");
                 vH.img_check.setBackgroundResource(R.mipmap.icon_multiple_choice);
             }else{
                 if (listData[posi]=="0"){
-                    vH.bell_time.setContentDescription(Const.KEY_NEVER_STOP);
+                    vH.bell_time.setContentDescription(Const.KEY_NEVER_STOP+Const.NO_STR);
                 }else{
-                    vH.bell_time.setContentDescription(listData[posi]+Const.KEY_MINUTE);
+                    vH.bell_time.setContentDescription(listData[posi]+Const.KEY_MINUTE+Const.NO_STR);
                 }
                 vH.img_check.setBackgroundResource(R.color.black);
             }
         }else{
             String checkStr = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_INTERVAL_TIME,"10");
             if (checkStr.equals(listData[posi])){
-                vH.bell_time.setContentDescription(listData[posi]+"分钟,已选中");
+                vH.bell_time.setContentDescription(listData[posi]+"分钟。已选中");
                 vH.img_check.setBackgroundResource(R.mipmap.icon_multiple_choice);
             }else{
-                vH.bell_time.setContentDescription(listData[posi]+Const.KEY_MINUTE);
+                vH.bell_time.setContentDescription(listData[posi]+Const.KEY_MINUTE+Const.NO_STR);
                 vH.img_check.setBackgroundResource(R.color.black);
             }
         }

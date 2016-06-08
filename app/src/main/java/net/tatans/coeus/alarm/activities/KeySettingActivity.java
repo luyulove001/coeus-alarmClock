@@ -16,6 +16,7 @@ import net.tatans.rhea.network.view.ViewIoc;
 
 /**
  * Created by SiLiPing on 2016/5/30.
+ * 电源键操作设置
  */
 @ContentView(R.layout.activity_key_setting)
 public class KeySettingActivity extends BaseActivity{
@@ -65,25 +66,25 @@ public class KeySettingActivity extends BaseActivity{
             img_check_null.setBackgroundResource(R.mipmap.icon_multiple_choice);
             img_check_wait.setBackgroundResource(R.color.black);
             img_check_close.setBackgroundResource(R.color.black);
-            llt_null.setContentDescription("无已选中");
-            llt_wait.setContentDescription("");
-            llt_close.setContentDescription("");
+            llt_null.setContentDescription("无。已选中");
+            llt_wait.setContentDescription("稍后再响"+Const.NO_STR);
+            llt_close.setContentDescription("关闭"+Const.NO_STR);
             if (isToast) TatansToast.showAndCancel("无已选中");
         }else if(keyCode.equals("1")){
             img_check_null.setBackgroundResource(R.color.black);
             img_check_wait.setBackgroundResource(R.mipmap.icon_multiple_choice);
             img_check_close.setBackgroundResource(R.color.black);
-            llt_null.setContentDescription("");
-            llt_wait.setContentDescription("稍后再响已选中");
-            llt_close.setContentDescription("");
+            llt_null.setContentDescription("无"+Const.NO_STR);
+            llt_wait.setContentDescription("稍后再响。已选中");
+            llt_close.setContentDescription("关闭"+Const.NO_STR);
             if (isToast) TatansToast.showAndCancel("稍后再响已选中");
         }else if(keyCode.equals("2")){
             img_check_null.setBackgroundResource(R.color.black);
             img_check_wait.setBackgroundResource(R.color.black);
             img_check_close.setBackgroundResource(R.mipmap.icon_multiple_choice);
-            llt_null.setContentDescription("");
-            llt_wait.setContentDescription("");
-            llt_close.setContentDescription("关闭已选中");
+            llt_null.setContentDescription("无"+Const.NO_STR);
+            llt_wait.setContentDescription("稍后再响"+Const.NO_STR);
+            llt_close.setContentDescription("关闭。已选中");
             if (isToast) TatansToast.showAndCancel("关闭已选中");
         }
         if (isToast){

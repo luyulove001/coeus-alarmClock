@@ -29,4 +29,6 @@ public class Const {
     public static final String[] BELL_NAME = {"晨光","晨曦","嘀嗒","黎明","每一天","鸟语花香","轻快","清新","跳跃"};/**名称 */
     public static final String[] WEEKDAY = {"周一","周二","周三","周四","周五","周六","周日"};
 
+    public static final String NO_STR = "。未选中。点按可切换";
+
 }

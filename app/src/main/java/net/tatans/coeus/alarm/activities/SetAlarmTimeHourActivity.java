@@ -26,11 +26,12 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tv_custom_hour_set.setText(getIntent().getStringExtra("time_set"));
+        splitText();
     }
 
     @OnClick(R.id.lyt_confirm)
     public void confirm() {
-        TatansToast.showAndCancel(getString(R.string.btn_confirm).toString());
+        TatansToast.showAndCancel("确定");
         Intent i = new Intent(this, SetAlarmTimeMinuteActivity.class);
         i.putExtra("hour", tv_custom_hour_set.getText().toString());
         startActivityForResult(i, RequestMinute);
@@ -47,29 +48,29 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
 
     @OnClick(R.id.add_one_hour)
     public void addOneHour() {
-        splitText();
         tv_custom_hour_set.setText(calculateTime(false, 1, getHour(), getMinute()));
+        splitText();
         TatansToast.showAndCancel(hour + "小时" + minute + "分");
     }
 
     @OnClick(R.id.minus_one_hour)
     public void minusOneHour() {
-        splitText();
         tv_custom_hour_set.setText(calculateTime(false, -1, getHour(), getMinute()));
+        splitText();
         TatansToast.showAndCancel(hour + "小时" + minute + "分");
     }
 
     @OnClick(R.id.add_five_hour)
     public void addFiveHour() {
-        splitText();
         tv_custom_hour_set.setText(calculateTime(false, 5, getHour(), getMinute()));
+        splitText();
         TatansToast.showAndCancel(hour + "小时" + minute + "分");
     }
 
     @OnClick(R.id.minus_five_hour)
     public void minusFiveHour() {
-        splitText();
         tv_custom_hour_set.setText(calculateTime(false, -5, getHour(), getMinute()));
+        splitText();
         TatansToast.showAndCancel(hour + "小时" + minute + "分");
     }
 

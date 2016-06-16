@@ -139,6 +139,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                             break;
                         case 2:
                             // TODO: 2016/5/31 法定工作日
+                            daysofweek = new Alarm.DaysOfWeek(0xff);//法定工作日
                             break;
                         case 3:
                             daysofweek = new Alarm.DaysOfWeek(0x1f);//周一到周五

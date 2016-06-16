@@ -260,9 +260,13 @@ public final class Alarm implements Parcelable {
             if (mDays == 0x7f) {
                 return context.getText(R.string.every_day).toString();
             }
-
+            // monday -- friday
             if (mDays == 0x1f) {
                 return Const.REPEAT_MODEL_LIST[3];
+            }
+            //法定工作日
+            if (mDays == 0xff) {
+                return Const.REPEAT_MODEL_LIST[2];
             }
             // count selected days
             int dayCount = 0, days = mDays;
@@ -329,6 +333,9 @@ public final class Alarm implements Parcelable {
         public int getNextAlarm(Calendar c) {
             if (mDays == 0) {
                 return -1;
+            }
+            if (mDays == 0xff) {
+                return -2;
             }
 
             int today = (c.get(Calendar.DAY_OF_WEEK) + 5) % 7;

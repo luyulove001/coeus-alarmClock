@@ -18,6 +18,7 @@ import android.util.Log;
 
 import net.tatans.coeus.alarm.activities.AlarmClockApplication;
 import net.tatans.coeus.alarm.bean.Alarm;
+import net.tatans.coeus.network.tools.TatansLog;
 
 import java.util.Calendar;
 
@@ -512,6 +513,12 @@ public class Alarms {
 
         int addDays = daysOfWeek.getNextAlarm(c);
         if (addDays > 0) c.add(Calendar.DAY_OF_WEEK, addDays);
+        else if (addDays == -2) {
+            if (!(System.currentTimeMillis() < c.getTimeInMillis()
+                    && CalculateSpecificWorkDateUtil.getInstance().isWorkDay(c))) {
+                c.add(Calendar.DAY_OF_YEAR, CalculateSpecificWorkDateUtil.getInstance().getNextWorkdayCount(c));
+            }
+        }
         return c;
     }
 

@@ -19,7 +19,7 @@ public class Const {
     public static final String KEY_ALARM_BELL_INTERVAL_TIME = "alarm_bell_interval_time";/**用于存储稍后响铃时间*/
     public static final String[] BELL_INTERVAL_TIME_LIST = {"1","5","10","15","20","25","30"};/**稍后响铃列表*/
     public static final String KEY_CODE = "key_code";/**按键设置 0,1,2：无、稍后、关闭*/
-    public static final String[] REPEAT_MODEL_LIST = {"只响一次","每天","周一至周五","自定义"};/**重复模式*///"法定工作日",暂时移出来
+    public static final String[] REPEAT_MODEL_LIST = {"只响一次","每天","法定工作日","周一至周五","自定义"};/**重复模式*///"法定工作日",暂时移出来
     public static final int REQUEST_TIME = 1;
     public static final int REQUEST_REPEAT = 2;
     public static final int REQUEST_ALERT = 3;

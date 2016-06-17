@@ -38,31 +38,31 @@ public class SetAlarmTimeMinuteActivity extends BaseActivity {
     }
 
     @OnClick(R.id.add_one_minute)
-    public void addOneHour() {
+    public void addOneMinute() {
         tv_custom_minute_set.setText(SetAlarmTimeHourActivity.calculateTime(true, 1, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.minus_one_minute)
-    public void minusOneHour() {
+    public void minusOneMinute() {
         tv_custom_minute_set.setText(SetAlarmTimeHourActivity.calculateTime(true, -1, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.add_ten_minute)
-    public void addFiveHour() {
+    public void addFiveMinute() {
         tv_custom_minute_set.setText(SetAlarmTimeHourActivity.calculateTime(true, 10, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.minus_ten_minute)
-    public void minusFiveHour() {
+    public void minusFiveMinute() {
         tv_custom_minute_set.setText(SetAlarmTimeHourActivity.calculateTime(true, -10, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     private void splitText() {

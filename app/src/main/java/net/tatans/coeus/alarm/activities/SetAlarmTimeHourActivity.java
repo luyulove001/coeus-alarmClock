@@ -50,28 +50,28 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
     public void addOneHour() {
         tv_custom_hour_set.setText(calculateTime(false, 1, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.minus_one_hour)
     public void minusOneHour() {
         tv_custom_hour_set.setText(calculateTime(false, -1, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.add_five_hour)
     public void addFiveHour() {
         tv_custom_hour_set.setText(calculateTime(false, 5, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     @OnClick(R.id.minus_five_hour)
     public void minusFiveHour() {
         tv_custom_hour_set.setText(calculateTime(false, -5, getHour(), getMinute()));
         splitText();
-        TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        TatansToast.showAndCancel(hour + ":" + minute);
     }
 
     private void splitText() {

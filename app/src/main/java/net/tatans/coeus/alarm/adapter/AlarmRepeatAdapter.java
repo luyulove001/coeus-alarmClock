@@ -40,6 +40,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
         daysOfWeek = (Alarm.DaysOfWeek) intent.getSerializableExtra("dayOfWeek");
         if (mark.equals(Const.REQUEST_REPEAT + "")) {
             listData = Const.REPEAT_MODEL_LIST;
+            ((Activity)ctx).setTitle(ctx.getString(R.string.repeat_title));
             for (int i = 0; i < Const.REPEAT_MODEL_LIST.length; i++) {
                 if (Const.REPEAT_MODEL_LIST[i].equals(daysOfWeek.toString(ctx, true))) {
                     repeat_model = i;
@@ -49,6 +50,7 @@ public class AlarmRepeatAdapter extends BaseAdapter {
                 }
             }
         }else{
+            ((Activity)ctx).setTitle("铃声设置");
             listData = Const.BELL_NAME;
         }
     }

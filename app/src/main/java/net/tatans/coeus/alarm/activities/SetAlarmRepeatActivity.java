@@ -26,7 +26,6 @@ public class SetAlarmRepeatActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.repeat_title));
         lv_bell_time.setAdapter(new AlarmRepeatAdapter(SetAlarmRepeatActivity.this,getIntent()));
     }
 

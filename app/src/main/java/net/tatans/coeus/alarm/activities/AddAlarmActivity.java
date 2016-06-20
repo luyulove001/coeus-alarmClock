@@ -83,8 +83,8 @@ public class AddAlarmActivity extends BaseActivity {
                 + changeTimeStyle(alarm.hour) + ":" + changeTimeStyle(alarm.minutes));
         switch_vibrate.setImageResource(alarm.vibrate ? R.mipmap.open_icon : R.mipmap.close_icon);
         layout_alarm_vibrate.setContentDescription(alarm.vibrate ?
-                getString(R.string.alarm_vibrate) + "。" + Const.YES_STR :
-                getString(R.string.alarm_vibrate) + "。" + Const.NO_STR);
+                getString(R.string.alarm_vibrate) + Const.YES_STR :
+                getString(R.string.alarm_vibrate) + Const.NO_STR);
         tv_alarm_repeat.setText(alarm.daysOfWeek.toString(getApplicationContext(), true));
         layout_repeat.setContentDescription(getString(R.string.alarm_repeat) + "。"
                 + alarm.daysOfWeek.toString(getApplicationContext(), true));
@@ -135,6 +135,9 @@ public class AddAlarmActivity extends BaseActivity {
     public void setSwitch_vibrate() {
         btnOnOff = !btnOnOff;
         switch_vibrate.setImageResource(btnOnOff ? R.mipmap.open_icon : R.mipmap.close_icon);
+        layout_alarm_vibrate.setContentDescription(btnOnOff ?
+                getString(R.string.alarm_vibrate) + Const.YES_STR :
+                getString(R.string.alarm_vibrate) + Const.NO_STR);
     }
 
     @OnClick(R.id.lyt_confirm)
@@ -184,7 +187,9 @@ public class AddAlarmActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Const.REQUEST_TIME && resultCode == Activity.RESULT_OK) {
-            tv_alarm_time.setText(data.getStringExtra("alarm_time"));
+            String time = data.getStringExtra("alarm_time");
+            tv_alarm_time.setText(time);
+            layout_alarm_time.setContentDescription(getString(R.string.time) + "。" + time);
             String[] str = tv_alarm_time.getText().toString().split(":");
             mHour = Integer.valueOf(str[0]);
             mMinute = Integer.valueOf(str[1]);

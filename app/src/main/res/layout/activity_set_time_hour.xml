@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <LinearLayout
@@ -113,14 +114,14 @@
         android:id="@+id/lyt_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/btn_confirm"
+        android:contentDescription="@string/btn_nextstep"
         android:gravity="center">
 
         <ImageView
             android:layout_width="@dimen/btn_confirm_width"
             android:layout_height="@dimen/btn_confirm_height"
             android:layout_marginTop="4dp"
-            android:src="@mipmap/btn_confirm"
+            android:src="@mipmap/btn_nextstep"
             android:gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>

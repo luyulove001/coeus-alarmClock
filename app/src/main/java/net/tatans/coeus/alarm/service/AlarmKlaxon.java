@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -17,13 +16,13 @@ import android.os.Vibrator;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.media.AudioManager.OnAudioFocusChangeListener;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.AlarmAlertWakeLock;
 import net.tatans.coeus.alarm.utils.Alarms;
 import net.tatans.coeus.alarm.utils.Const;
+import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansPreferences;
 
 import java.io.IOException;
@@ -218,7 +217,7 @@ public class AlarmKlaxon extends Service {
                 if (mTelephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE) {
                     Log.v("wangxianming", "Using the in-call alarm");
                     mMediaPlayer.setVolume(IN_CALL_VOLUME, IN_CALL_VOLUME);
-                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.in_call_alarm);
+                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.bell0);
                 } else {
 //                    mMediaPlayer.setDataSource(this, alert);
                     int alertID = Integer.parseInt(alarm.label);
@@ -236,7 +235,7 @@ public class AlarmKlaxon extends Service {
                 try {
                     // Must reset the media player to clear the error state.
                     mMediaPlayer.reset();
-                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.fallbackring);
+                    setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.bell0);
                     startAlarm(mMediaPlayer);
                 } catch (Exception ex2) {
                     // At this point we just don't play anything.
@@ -257,19 +256,42 @@ public class AlarmKlaxon extends Service {
         mStartTime = System.currentTimeMillis();
     }
 
+    private int currentVolume;
+    private int maxVolume;
     // Do the common stuff when starting the alarm.
     private void startAlarm(MediaPlayer player)
             throws java.io.IOException, IllegalArgumentException,
                    IllegalStateException {
         final AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        //最大音量
+        maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM);
+        //当前音量
+        currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_ALARM);
+        TatansLog.e("antony", currentVolume + " currentVolume" + maxVolume + " maxVolume");
         // do not play alarms if stream volume is 0
         // (typically because ringer mode is silent).
         if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
             player.setAudioStreamType(AudioManager.STREAM_ALARM);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, 1, 0);
             player.setLooping(true);
             player.prepare();
             player.start();
+            turnUp();
         }
+    }
+
+    private int i = 1;
+
+    private void turnUp() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, i++, 0);
+                TatansLog.e("antony", i + " run");
+                if (i <= maxVolume)
+                    turnUp();
+            }
+        }, 3000);
     }
 
     private void setDataSourceFromResource(Resources resources,

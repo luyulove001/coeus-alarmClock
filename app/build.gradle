@@ -52,7 +52,7 @@ android {
             }
         }
         debug {
-            manifestPlaceholders = [app_label: AppName+"-debub"]
+            manifestPlaceholders = [app_label: AppName+"-debug"]
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig

@@ -95,7 +95,7 @@ public class AddAlarmActivity extends BaseActivity {
         btnOnOff = alarm.vibrate;
         tv_alert.setText(Const.BELL_NAME[Integer.valueOf(mLabel)]);
         layout_alert.setContentDescription(getString(R.string.alert)
-                + Const.BELL_NAME[Integer.valueOf(mLabel)]);
+                + "。" + Const.BELL_NAME[Integer.valueOf(mLabel)]);
     }
 
     public static String changeTimeStyle(int time) {
@@ -196,9 +196,13 @@ public class AddAlarmActivity extends BaseActivity {
         } else if (requestCode == Const.REQUEST_REPEAT && resultCode == Activity.RESULT_OK) {
             newDaysOfWeek = (Alarm.DaysOfWeek) data.getSerializableExtra("days_of_week");
             tv_alarm_repeat.setText(newDaysOfWeek.toString(getApplicationContext(), true));
+            layout_repeat.setContentDescription(getString(R.string.alarm_repeat) + "。"
+                    + newDaysOfWeek.toString(getApplicationContext(), true));
         } else if (requestCode == Const.REQUEST_ALERT && resultCode == Activity.RESULT_OK) {
             tv_alert.setText(data.getStringExtra("bell_uri"));
             mLabel = data.getStringExtra("bell_position");
+            layout_alert.setContentDescription(getString(R.string.alert)
+                    + "。" + data.getStringExtra("bell_uri"));
         }
     }
 

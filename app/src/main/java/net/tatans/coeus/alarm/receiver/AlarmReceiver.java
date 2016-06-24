@@ -58,7 +58,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         if (alarm == null) {
-            Log.v("wangxianming", "Failed to parse the alarm from the intent");
+            Log.v("antony", "Failed to parse the alarm from the intent");
             // Make sure we set the next alert if needed.
             Alarms.setNextAlert(context);
             return;
@@ -81,7 +81,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // Always verbose to track down time change problems.
         if (now > alarm.time + STALE_WINDOW) {
-            Log.v("wangxianming", "Ignoring stale alarm");
+            Log.v("antony", "Ignoring stale alarm");
             return;
         }
 
@@ -156,7 +156,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // If the alarm is null, just cancel the notification.
         if (alarm == null) {
             if (true) {
-                Log.v("wangxianming", "Cannot update notification for killer callback");
+                Log.v("antony", "Cannot update notification for killer callback");
             }
             return;
         }

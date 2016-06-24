@@ -97,21 +97,7 @@ public class DigitalClock extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
-        /**
-         * note by wangxianming
-         * in 2012-4-14
-         */
-//        if (sTypeface == null) {
-//            sTypeface = Typeface.createFromAsset(getContext().getAssets(),
-//                "fonts/Clockopia.ttf");
-//        }
         mTimeDisplay = (TextView) findViewById(R.id.timeDisplay);
-        /**
-         * note by wangxianming
-         * in 2012-4-14
-         */
-//        mTimeDisplay.setTypeface(sTypeface);
         mAmPm = new AmPm(this);
         mCalendar = Calendar.getInstance();
 

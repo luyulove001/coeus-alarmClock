@@ -282,7 +282,7 @@ public class Alarms {
                     if (a.time == 0) {
                         a.time = calculateAlarm(a);
                     } else if (a.time < now) {
-                        Log.v("wangxianming", "Disabling expired alarm set for ");
+                        Log.v("antony", "Disabling expired alarm set for ");
                         // Expired alarm, disable it and move along.
                         enableAlarmInternal(context, a, false);
                         continue;
@@ -348,7 +348,7 @@ public class Alarms {
                 context.getSystemService(Context.ALARM_SERVICE);
 
         if (true) {
-            Log.v("wangxianming", "** setAlert id " + alarm.id + " atTime " + atTimeInMillis);
+            Log.v("antony", "** setAlert id " + alarm.id + " atTime " + atTimeInMillis);
         }
 
         Intent intent = new Intent(ALARM_ALERT_ACTION);

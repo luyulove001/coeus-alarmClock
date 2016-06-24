@@ -57,7 +57,7 @@ public class AlarmAlert extends AlarmAlertFullScreen {
 
     private void handleScreenOff() {
         String keyStr = (String) TatansPreferences.get(Const.KEY_CODE,"0");
-        Log.e("wangxianming", "熄屏下关闭闹钟"+"----keyStr:"+keyStr);
+        Log.e("antony", "熄屏下关闭闹钟"+"----keyStr:"+keyStr);
         if (!keyStr.equals("0")){
             Intent mIntent = new Intent("ACTION_KEY_CODE");
             mIntent.putExtra(SCREEN_OFF, true);

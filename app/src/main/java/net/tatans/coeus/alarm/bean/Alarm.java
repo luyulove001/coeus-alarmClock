@@ -167,7 +167,7 @@ public final class Alarm implements Parcelable {
         String alertString = c.getString(Columns.ALARM_ALERT_INDEX);
         if (Alarms.ALARM_ALERT_SILENT.equals(alertString)) {
             if (true) {
-                Log.v("wangxianming", "Alarm is marked as silent");
+                Log.v("antony", "Alarm is marked as silent");
             }
             silent = true;
         } else {

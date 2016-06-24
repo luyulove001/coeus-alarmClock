@@ -43,6 +43,8 @@ public class AlarmAlertFullScreen extends Activity {
     private int mVolumeBehavior = 0;/**音量键设置*/
     private int snoozeMinutes;/**间隔时间*/
     private TextView tv_snooze_time;
+    private LockLayer lockLayer;
+    private View alert;
 
     // Receives the ALARM_KILLED action from the AlarmKlaxon,
     // and also ALARM_SNOOZE_ACTION / ALARM_DISMISS_ACTION from other applications
@@ -123,12 +125,15 @@ public class AlarmAlertFullScreen extends Activity {
 
     private void updateLayout() {
         LayoutInflater inflater = LayoutInflater.from(this);
-
-        setContentView(inflater.inflate(R.layout.alarm_alert, null));
+        lockLayer = LockLayer.getInstance(this);
+        alert = inflater.inflate(R.layout.alarm_alert, null);
+        lockLayer.setLockView(alert);
+        lockLayer.lock();
+//        setContentView(inflater.inflate(R.layout.alarm_alert, null));
 
         /* snooze behavior: pop a snooze confirmation view, kick alarm
            manager. */
-        LinearLayout snooze = (LinearLayout) findViewById(R.id.snooze);
+        LinearLayout snooze = (LinearLayout) alert.findViewById(R.id.snooze);
         snooze.requestFocus();
         snooze.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -137,7 +142,7 @@ public class AlarmAlertFullScreen extends Activity {
         });
 
         /* dismiss button: close notification */
-        findViewById(R.id.dismiss).setOnClickListener(new Button.OnClickListener() {
+        alert.findViewById(R.id.dismiss).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 dismiss(false);
             }
@@ -147,7 +152,7 @@ public class AlarmAlertFullScreen extends Activity {
         String time = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_INTERVAL_TIME,Const.KEY_TEN_MINUTE);
         snoozeMinutes = Integer.parseInt(time);
         /**动态设置button的间隔时间*/
-        tv_snooze_time = (TextView) findViewById(R.id.tv_snooze_time);
+        tv_snooze_time = (TextView) alert.findViewById(R.id.tv_snooze_time);
         tv_snooze_time.setText(getString(R.string.alarm_alert_snooze_text, time+"分钟"));
     }
 
@@ -155,7 +160,7 @@ public class AlarmAlertFullScreen extends Activity {
     /**再响间隔设置*/
     private void snooze() {
         // Do not snooze if the snooze button is disabled.
-        if (!findViewById(R.id.snooze).isEnabled()) {
+        if (!alert.findViewById(R.id.snooze).isEnabled()) {
             dismiss(false);
             return;
         }
@@ -197,11 +202,12 @@ public class AlarmAlertFullScreen extends Activity {
 
         String displayTime = getString(R.string.alarm_alert_snooze_set, snoozeMinutes);
         // Intentionally log the snooze time for debugging.
-        Log.v("wangxianming", " AlarmAlertFullScreen" + displayTime);
+        Log.v("antony", " AlarmAlertFullScreen" + displayTime);
 
         // Display the snooze minutes in a toast.
         Toast.makeText(AlarmAlertFullScreen.this, displayTime, Toast.LENGTH_LONG).show();
         stopService(new Intent(Alarms.ALARM_ALERT_ACTION));
+        lockLayer.unlock();
         finish();
     }
 
@@ -219,6 +225,7 @@ public class AlarmAlertFullScreen extends Activity {
             nm.cancel(mAlarm.id);
             stopService(new Intent(Alarms.ALARM_ALERT_ACTION));
         }
+        lockLayer.unlock();
         finish();
     }
 
@@ -229,7 +236,7 @@ public class AlarmAlertFullScreen extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.v("wangxianming", "AlarmAlert.OnNewIntent()");
+        Log.v("antony", "AlarmAlert.OnNewIntent()");
         mAlarm = intent.getParcelableExtra(Alarms.ALARM_INTENT_EXTRA);
     }
 
@@ -238,7 +245,7 @@ public class AlarmAlertFullScreen extends Activity {
         super.onResume();
         // If the alarm was deleted at some point, disable snooze.
         if (Alarms.getAlarm(getContentResolver(), mAlarm.id) == null) {
-            LinearLayout snooze = (LinearLayout) findViewById(R.id.snooze);
+            LinearLayout snooze = (LinearLayout) alert.findViewById(R.id.snooze);
             snooze.setEnabled(false);
         }
     }
@@ -246,7 +253,7 @@ public class AlarmAlertFullScreen extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v("wangxianming", "AlarmAlert.onDestroy()");
+        Log.v("antony", "AlarmAlert.onDestroy()");
         // No longer care about the alarm being killed.
         unregisterReceiver(mReceiver);
         unregisterReceiver(mKeyReceiver);

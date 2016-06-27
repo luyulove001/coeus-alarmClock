@@ -152,6 +152,7 @@ public class AddAlarmActivity extends BaseActivity {
          */
         saveAlarm();
         TatansToast.showAndCancel("保存成功");
+        setResult(101);//通知操作闹钟界面可以关闭了
         finish();
     }
 

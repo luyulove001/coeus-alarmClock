@@ -45,7 +45,7 @@ public class AlarmOperateActivity extends BaseActivity {
     public void reset_alarm() {
         Intent i = new Intent(AlarmOperateActivity.this, AddAlarmActivity.class);
         i.putExtra("alarm_id", mId);
-        startActivity(i);
+        startActivityForResult(i, 100);
     }
 
     @OnClick(R.id.del_alarm)
@@ -55,4 +55,9 @@ public class AlarmOperateActivity extends BaseActivity {
         finish();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == 101) finish();
+    }
 }

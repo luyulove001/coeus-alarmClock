@@ -9,22 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:footerDividersEnabled="false"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:footerDividersEnabled="false" />
 
     <LinearLayout
         android:id="@+id/lyt_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:contentDescription="@string/btn_confirm"
+        android:gravity="center"
         android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/btn_confirm_width"
             android:layout_height="@dimen/btn_confirm_height"
             android:layout_marginTop="4dp"
-            android:src="@mipmap/btn_confirm"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:src="@mipmap/btn_confirm" />
     </LinearLayout>
 </LinearLayout>

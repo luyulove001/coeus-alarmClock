@@ -53,6 +53,7 @@ public class SettingActivity extends BaseActivity {
         }
         String time = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_INTERVAL_TIME,Const.KEY_TEN_MINUTE);
         tv_alarm_snooze_duration.setText(time+Const.KEY_MINUTE);
+        setTitle(getString(R.string.set_alarm));
     }
 
     /**静音响铃*/

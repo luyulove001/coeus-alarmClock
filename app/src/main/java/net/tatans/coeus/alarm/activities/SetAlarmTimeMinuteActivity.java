@@ -26,6 +26,7 @@ public class SetAlarmTimeMinuteActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         tv_custom_minute_set.setText(getIntent().getStringExtra("hour"));
         splitText();
+        setTitle("分钟设置");
     }
 
     @OnClick(R.id.lyt_confirm)

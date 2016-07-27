@@ -28,8 +28,10 @@ public class PublicListActivity extends BaseActivity{
         sign = intent.getStringExtra("sign");
         if (sign.equals(Const.KEY_ALARM_BELL_TIME)){
             lv_bell_time.setAdapter(new PublicListAdapter(this,Const.BELL_TIME_LIST,sign));
+            setTitle(getString(R.string.alarm_in_silent_time));
         }else{
             lv_bell_time.setAdapter(new PublicListAdapter(this,Const.BELL_INTERVAL_TIME_LIST,sign));
+            setTitle(getString(R.string.alarm_snooze_duration));
         }
     }
 }

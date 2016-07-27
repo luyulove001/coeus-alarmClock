@@ -37,6 +37,7 @@ public class KeySettingActivity extends BaseActivity{
     private void initData() {
         String keyCode = (String)TatansPreferences.get(Const.KEY_CODE,"0");
         refresh(keyCode,false);
+        setTitle(getString(R.string.alarm_key_setting));
     }
 
     /**无*/

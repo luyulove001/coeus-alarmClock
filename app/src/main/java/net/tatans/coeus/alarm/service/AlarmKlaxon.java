@@ -288,7 +288,7 @@ public class AlarmKlaxon extends Service {
             public void run() {
                 mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, i++, 0);
                 TatansLog.e("antony", i + " run");
-                if (i <= maxVolume)
+                if (i <= maxVolume && mPlaying)
                     turnUp();
             }
         }, 3000);

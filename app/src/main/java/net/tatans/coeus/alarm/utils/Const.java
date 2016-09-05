@@ -23,6 +23,7 @@ public class Const {
     public static final int REQUEST_TIME = 1;
     public static final int REQUEST_REPEAT = 2;
     public static final int REQUEST_ALERT = 3;
+    public static final int REQUEST_LABEL = 5;
     public static final int REQUEST_CUSTOM_WEEK = 4;
     public static final String REPEAT_PREF = "repeat_pref";/**0,1,2,3,4 与重复模式对应 */
     public static final int[] BELL_ID = {R.raw.bell0,R.raw.bell1,R.raw.bell2,R.raw.bell3,R.raw.bell4,R.raw.bell5,R.raw.bell6,R.raw.bell7,R.raw.bell8};/**铃声 */

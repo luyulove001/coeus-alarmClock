@@ -43,6 +43,7 @@
     <string name="alert">"铃声"</string>
     <string name="time">"闹钟时间"</string>
     <string name="set_alarm">"设置闹钟"</string>
+    <string name="alarm_remarks">"闹钟备注"</string>
 
     <string name="done">"完成"</string>
     <string name="revert">"还原"</string>

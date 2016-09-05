@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2007 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,8 +13,7 @@
      limitations under the License.
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -28,44 +26,60 @@
         <net.tatans.coeus.alarm.utils.DigitalClock
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="35dip"
-            android:paddingBottom="35dip"
-            android:baselineAligned="true"
-            android:focusable="true"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView android:id="@+id/timeDisplay"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:textSize="64sp"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:layout_gravity="center_horizontal"
+                android:baselineAligned="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingBottom="35dip"
+                android:paddingTop="35dip">
 
-            <TextView android:id="@+id/am_pm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?android:attr/textColorPrimary"/>
+                <TextView
+                    android:id="@+id/timeDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="64sp" />
 
+                <TextView
+                    android:id="@+id/am_pm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/remarks"
+                android:layout_width="match_parent"
+                android:layout_height="32.5dp"
+                android:layout_marginBottom="12.5dp"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:gravity="center"/>
         </net.tatans.coeus.alarm.utils.DigitalClock>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#fff"/>
+            android:background="#fff" />
 
         <LinearLayout
             android:id="@+id/snooze"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="25dp"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="25dp">
 
             <ImageView
                 android:layout_width="@dimen/default_icon_width"
@@ -88,10 +102,10 @@
             android:id="@+id/dismiss"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="25dp"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="25dp">
 
             <ImageView
                 android:layout_width="@dimen/default_icon_width"

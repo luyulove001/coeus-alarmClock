@@ -9,9 +9,14 @@ import net.tatans.coeus.network.tools.TatansApplication;
  */
 public class AlarmClockApplication  extends TatansApplication{
     public static final String PREFERENCES = "AlarmClock";
+    private static AlarmClockApplication  sInstance ;
     @Override
     public void onCreate() {
         super.onCreate();
 //        setAppSpeaker();
+        sInstance = this;
+    }
+    public static AlarmClockApplication getInstance() {
+        return sInstance;
     }
 }

@@ -136,7 +136,7 @@ public class AlarmAlertFullScreen extends Activity {
         LinearLayout snooze = (LinearLayout) alert.findViewById(R.id.snooze);
         TextView tv_label = (TextView) alert.findViewById(R.id.remarks);
         if(!mAlarm.label.equals("无")){
-            tv_label.setText("闹钟备注:"+mAlarm.label);
+            tv_label.setText(mAlarm.label);
         }
         snooze.requestFocus();
         snooze.setOnClickListener(new Button.OnClickListener() {

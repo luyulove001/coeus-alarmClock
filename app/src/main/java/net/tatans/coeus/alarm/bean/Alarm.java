@@ -46,7 +46,7 @@ public final class Alarm implements Parcelable {
         p.writeLong(time);
         p.writeInt(vibrate ? 1 : 0);
         p.writeString(label);
-        p.writeParcelable(alert, flags);
+        p.writeString(alert);
         p.writeInt(silent ? 1 : 0);
     }
     //////////////////////////////
@@ -152,7 +152,7 @@ public final class Alarm implements Parcelable {
     public long       time;
     public boolean    vibrate;
     public String     label;
-    public Uri        alert;
+    public String     alert;
     public boolean    silent;
 
     public Alarm(Cursor c) {
@@ -172,14 +172,13 @@ public final class Alarm implements Parcelable {
             silent = true;
         } else {
             if (alertString != null && alertString.length() != 0) {
-                alert = Uri.parse(alertString);
+                alert = alertString;
             }
 
             // If the database alert is null or it failed to parse, use the
             // default alert.
             if (alert == null) {
-                alert = RingtoneManager.getDefaultUri(
-                        RingtoneManager.TYPE_ALARM);
+                alert = getAlertOrDefault();
             }
         }
     }
@@ -193,7 +192,7 @@ public final class Alarm implements Parcelable {
         time = p.readLong();
         vibrate = p.readInt() == 1;
         label = p.readString();
-        alert = (Uri) p.readParcelable(null);
+        alert = p.readString();
         silent = p.readInt() == 1;
     }
 
@@ -207,7 +206,7 @@ public final class Alarm implements Parcelable {
         minutes = c.get(Calendar.MINUTE);
         vibrate = true;
         daysOfWeek = new DaysOfWeek(0);
-        alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        alert = getAlertOrDefault();
     }
 
     public String getLabelOrDefault(Context context) {
@@ -215,6 +214,13 @@ public final class Alarm implements Parcelable {
             return "0";
         }
         return label;
+    }
+
+    public String getAlertOrDefault() {
+        if (alert == null || alert.length() == 0) {
+            return "0";
+        }
+        return alert;
     }
 
     /*

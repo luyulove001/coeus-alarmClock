@@ -52,7 +52,7 @@ public class AddAlarmActivity extends BaseActivity {
     private Intent intent;
     private Alarm mOriginalAlarm;//原闹钟若是添加闹钟，则为新闹钟
     private int mId;//判断ID是否为-1来判断是新闹钟还是已存在的闹钟
-    private String mLabel;//闹钟标签，暂时用来保存铃声
+    private String mAlert;//闹钟标签，暂时用来保存铃声
     private Alarm.DaysOfWeek newDaysOfWeek;
 
     @Override
@@ -91,11 +91,11 @@ public class AddAlarmActivity extends BaseActivity {
         mHour = alarm.hour;
         mMinute = alarm.minutes;
         newDaysOfWeek = alarm.daysOfWeek;
-        mLabel = alarm.getLabelOrDefault(getApplicationContext());
+        mAlert = alarm.getLabelOrDefault(getApplicationContext());
         btnOnOff = alarm.vibrate;
-        tv_alert.setText(Const.BELL_NAME[Integer.valueOf(mLabel)]);
+        tv_alert.setText(Const.BELL_NAME[Integer.valueOf(mAlert)]);
         layout_alert.setContentDescription(getString(R.string.alert)
-                + "。" + Const.BELL_NAME[Integer.valueOf(mLabel)]);
+                + "。" + Const.BELL_NAME[Integer.valueOf(mAlert)]);
     }
 
     public static String changeTimeStyle(int time) {
@@ -125,7 +125,7 @@ public class AddAlarmActivity extends BaseActivity {
     public void setAlert() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_ALERT + "");
-        intent.putExtra("alert", mLabel);
+        intent.putExtra("alert", mAlert);
         intent.setClass(AddAlarmActivity.this, SetAlarmRepeatActivity.class);
         startActivityForResult(intent, Const.REQUEST_ALERT);
 //        TatansStartActivity(SetAlarmRepeatActivity.class);
@@ -168,8 +168,8 @@ public class AddAlarmActivity extends BaseActivity {
         alarm.minutes = mMinute;
         alarm.daysOfWeek = newDaysOfWeek;
         alarm.vibrate = btnOnOff;
-        alarm.label = mLabel;
-        Log.e("antony", mId + ","+mHour + ","+mMinute + ","+newDaysOfWeek.toString(getApplicationContext(), true) + "," + btnOnOff + "," + mLabel);
+        alarm.alert = mAlert;
+        Log.e("antony", mId + ","+mHour + ","+mMinute + ","+newDaysOfWeek.toString(getApplicationContext(), true) + "," + btnOnOff + "," + mAlert);
 
         long time;
         if (alarm.id == -1) {
@@ -201,7 +201,7 @@ public class AddAlarmActivity extends BaseActivity {
                     + newDaysOfWeek.toString(getApplicationContext(), true));
         } else if (requestCode == Const.REQUEST_ALERT && resultCode == Activity.RESULT_OK) {
             tv_alert.setText(data.getStringExtra("bell_uri"));
-            mLabel = data.getStringExtra("bell_position");
+            mAlert = data.getStringExtra("bell_position");
             layout_alert.setContentDescription(getString(R.string.alert)
                     + "。" + data.getStringExtra("bell_uri"));
         }

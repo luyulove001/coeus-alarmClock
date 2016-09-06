@@ -31,10 +31,16 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
     buildTypes {
         release {
             manifestPlaceholders = [app_label: AppName]
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
             applicationVariants.all { variant ->
@@ -53,7 +59,7 @@ android {
         }
         debug {
             manifestPlaceholders = [app_label: AppName+"-debug"]
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
         }
@@ -63,8 +69,8 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor 1, 'minutes'
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'net.tatans.coeus:coeus-network:5.4.0-SNAPSHOT'
     compile 'com.android.support:appcompat-v7:19.1.0'
-//    compile 'com.zhy:percent-support-extends:1.1.1'
+    compile files('libs/Sunflower.jar')
 }

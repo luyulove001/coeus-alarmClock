@@ -24,6 +24,7 @@ import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.receiver.AlarmReceiver;
 import net.tatans.coeus.network.tools.TatansPreferences;
+import net.tatans.coeus.network.tools.TatansToast;
 
 import java.util.Calendar;
 
@@ -137,6 +138,7 @@ public class AlarmAlertFullScreen extends Activity {
         TextView tv_label = (TextView) alert.findViewById(R.id.remarks);
         if(!mAlarm.label.equals("无")){
             tv_label.setText(mAlarm.label);
+            TatansToast.showAndCancel(mAlarm.label+","+mAlarm.label);
         }
         snooze.requestFocus();
         snooze.setOnClickListener(new Button.OnClickListener() {

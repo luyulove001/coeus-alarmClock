@@ -1,8 +1,11 @@
 package net.tatans.coeus.alarm.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,8 +37,9 @@ public class RemarksActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("备注");
-        btn_voice.setContentDescription("语音输入");
-        btn_determine.setContentDescription("确定");
+        btn_voice.setContentDescription("语音输入。");
+        btn_determine.setContentDescription("确定。");
+        onInputMethod(true);
     }
 
     /**
@@ -58,6 +62,7 @@ public class RemarksActivity extends BaseActivity {
      */
     @OnClick(R.id.btn_voice)
     private void onClickVoice() {
+        onInputMethod(false);
         intent = new Intent();
         intent.setClass(this, VioceActivity.class);
         startActivityForResult(intent, 1);
@@ -73,7 +78,33 @@ public class RemarksActivity extends BaseActivity {
             } else {
                 edit_remarks.setText(data.getStringExtra("label"));
                 TatansToast.showAndCancel(data.getStringExtra("label"));
+                setTitle("");
             }
         }
+    }
+
+
+    /**
+     * 软键盘的显示和隐藏
+     *
+     * @param isFlag
+     */
+    public void onInputMethod(boolean isFlag) {
+        InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (isFlag) {
+            inputmanger.showSoftInput(edit_remarks,
+                    InputMethodManager.RESULT_SHOWN);
+            inputmanger.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY);
+        } else {
+            View viewa = getWindow().peekDecorView();
+            inputmanger.hideSoftInputFromWindow(viewa.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        onInputMethod(false);//隐藏软键盘
     }
 }

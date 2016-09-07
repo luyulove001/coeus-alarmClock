@@ -80,7 +80,6 @@ public class AddAlarmActivity extends BaseActivity {
                 return;
             }
         }
-        layout_remarks.setContentDescription("闹钟备注，"+alarm.getLabelOrDefault(getApplicationContext()));
         mOriginalAlarm = alarm;
         updateAlarmView(mOriginalAlarm);
     }
@@ -227,4 +226,9 @@ public class AddAlarmActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        layout_remarks.setContentDescription("闹钟备注，"+remarks_content.getText().toString());
+    }
 }

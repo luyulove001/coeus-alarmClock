@@ -33,6 +33,9 @@ public class RemarksActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("备注");
+        btn_voice.setContentDescription("语音输入");
+        btn_determine.setContentDescription("确定");
     }
 
     /**
@@ -69,6 +72,7 @@ public class RemarksActivity extends BaseActivity {
                 TatansToast.showAndCancel("语音识别失败");
             } else {
                 edit_remarks.setText(data.getStringExtra("label"));
+                TatansToast.showAndCancel(data.getStringExtra("label"));
             }
         }
     }

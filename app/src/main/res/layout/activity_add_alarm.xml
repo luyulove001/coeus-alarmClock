@@ -157,7 +157,7 @@
             android:id="@+id/layout_remarks"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/alarm_vibrate">
+            >
 
             <TextView
                 android:layout_width="wrap_content"

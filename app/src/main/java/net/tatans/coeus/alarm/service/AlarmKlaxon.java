@@ -33,10 +33,12 @@ import java.io.IOException;
  */
 public class AlarmKlaxon extends Service {
 
-    /** Play alarm up to 10 minutes before silencing */
+    /**
+     * Play alarm up to 10 minutes before silencing
+     */
     private static final int ALARM_TIMEOUT_SECONDS = 10 * 60;
 
-    private static final long[] sVibratePattern = new long[] { 500, 500 };
+    private static final long[] sVibratePattern = new long[]{500, 500};
 
     private boolean mPlaying = false;
     private Vibrator mVibrator;
@@ -47,7 +49,7 @@ public class AlarmKlaxon extends Service {
     private int mInitialCallState;
     private AudioManager mAudioManager = null;
     private boolean mCurrentStates = true;
-    
+
     // Internal messages
     private static final int KILLER = 1;
     private static final int FOCUSCHANGE = 2;
@@ -62,31 +64,31 @@ public class AlarmKlaxon extends Service {
                 case FOCUSCHANGE:
                     switch (msg.arg1) {
                         case AudioManager.AUDIOFOCUS_LOSS:
-                            
-                            if(!mPlaying && mMediaPlayer != null) {
+
+                            if (!mPlaying && mMediaPlayer != null) {
                                 stop();
                             }
                             break;
                         case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                         case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                            
-                            if(!mPlaying && mMediaPlayer != null) {
+
+                            if (!mPlaying && mMediaPlayer != null) {
                                 mMediaPlayer.pause();
                                 mCurrentStates = false;
                             }
                             break;
                         case AudioManager.AUDIOFOCUS_GAIN:
-                            
-                            if(mPlaying && !mCurrentStates) {
-                                play(mCurrentAlarm); 
-                            } 
+
+                            if (mPlaying && !mCurrentStates) {
+                                play(mCurrentAlarm);
+                            }
                             break;
                         default:
-                            
+
                             break;
-                    }                                    
-                  default:
-                          break;
+                    }
+                default:
+                    break;
 
             }
         }
@@ -180,6 +182,7 @@ public class AlarmKlaxon extends Service {
             mHandler.obtainMessage(FOCUSCHANGE, focusChange, 0).sendToTarget();
         }
     };
+
     private void play(Alarm alarm) {
         // stop() checks to see if we are already playing.
         mAudioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_ALARM,
@@ -239,7 +242,7 @@ public class AlarmKlaxon extends Service {
                     startAlarm(mMediaPlayer);
                 } catch (Exception ex2) {
                     // At this point we just don't play anything.
-                    Log.v("antony", "Failed to play fallback ringtone"+ex2);
+                    Log.v("antony", "Failed to play fallback ringtone" + ex2);
                 }
             }
         }
@@ -258,11 +261,12 @@ public class AlarmKlaxon extends Service {
 
     private int currentVolume;
     private int maxVolume;
+
     // Do the common stuff when starting the alarm.
     private void startAlarm(MediaPlayer player)
             throws java.io.IOException, IllegalArgumentException,
-                   IllegalStateException {
-        final AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            IllegalStateException {
+        final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //最大音量
         maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM);
         //当前音量
@@ -283,19 +287,20 @@ public class AlarmKlaxon extends Service {
     private int i = 1;
 
     private void turnUp() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, i++, 0);
-                TatansLog.e("antony", i + " run");
-                if (i <= maxVolume && mPlaying)
+        if (i <= maxVolume && mPlaying) {
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, i++, 0);
+                    TatansLog.e("antony", i + " run");
                     turnUp();
-            }
-        }, 3000);
+                }
+            }, 3000);
+        }
     }
 
     private void setDataSourceFromResource(Resources resources,
-            MediaPlayer player, int res) throws java.io.IOException {
+                                           MediaPlayer player, int res) throws java.io.IOException {
         AssetFileDescriptor afd = resources.openRawResourceFd(res);
         if (afd != null) {
             player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
@@ -332,15 +337,15 @@ public class AlarmKlaxon extends Service {
     /**
      * Kills alarm audio after ALARM_TIMEOUT_SECONDS, so the alarm
      * won't run all day.
-     *
+     * <p>
      * This just cancels the audio, but leaves the notification
      * popped, so the user will know that the alarm tripped.
      */
     private void enableKiller(Alarm alarm) {
         /**设置响铃时长*/
-        String timStr = (String)TatansPreferences.get(Const.KEY_ALARM_BELL_TIME,"10");
+        String timStr = (String) TatansPreferences.get(Const.KEY_ALARM_BELL_TIME, "10");
         int timeInt = Integer.parseInt(timStr);
-        if (timeInt>0){
+        if (timeInt > 0) {
             mHandler.sendMessageDelayed(mHandler.obtainMessage(KILLER, alarm), timeInt * Const.MINUTE);
         }
     }

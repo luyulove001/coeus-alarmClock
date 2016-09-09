@@ -211,7 +211,7 @@ public final class Alarm implements Parcelable {
 
     public String getLabelOrDefault(Context context) {
         if (label == null || label.length() == 0) {
-            return "0";
+            return "无";
         }
         return label;
     }

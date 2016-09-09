@@ -7,4 +7,6 @@
     <color name="black">#000</color>
     <color name="background">#131313</color>
     <color name="gray">#FFB9B9B9</color>
+    <color name="rippelColor">#0099CC</color>
+    <color name="green_title">#3cb034</color>
 </resources>

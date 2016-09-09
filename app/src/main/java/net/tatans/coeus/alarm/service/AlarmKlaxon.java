@@ -223,7 +223,7 @@ public class AlarmKlaxon extends Service {
                     setDataSourceFromResource(getResources(), mMediaPlayer, R.raw.bell0);
                 } else {
 //                    mMediaPlayer.setDataSource(this, alert);
-                    int alertID = Integer.parseInt(alarm.label);
+                    int alertID = Integer.parseInt(alarm.alert);
                     try {
                         setDataSourceFromResource(getResources(), mMediaPlayer, Const.BELL_ID[alertID]);
                     } catch (IOException e) {

@@ -16,3 +16,5 @@
 #   public *;
 #}
 -keep class net.tatans.rhea.network.**{ *;}
+-keep class com.iflytek.** {*;}
+-dontwarn com.iflytek.**

@@ -203,7 +203,7 @@ public final class Alarm implements Parcelable {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         hour = c.get(Calendar.HOUR_OF_DAY);
-        minutes = c.get(Calendar.MINUTE);
+        minutes = c.get(Calendar.MINUTE) + 1;
         vibrate = true;
         daysOfWeek = new DaysOfWeek(0);
         alert = getAlertOrDefault();

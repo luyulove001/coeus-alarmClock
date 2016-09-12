@@ -287,16 +287,16 @@ public class AlarmKlaxon extends Service {
     private int i = 1;
 
     private void turnUp() {
-        if (i <= maxVolume && mPlaying) {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (i <= maxVolume && mPlaying) {
                     mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, i++, 0);
                     TatansLog.e("antony", i + " run");
                     turnUp();
                 }
-            }, 3000);
-        }
+            }
+        }, 3000);
     }
 
     private void setDataSourceFromResource(Resources resources,

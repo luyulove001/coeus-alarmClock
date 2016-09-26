@@ -1,7 +1,5 @@
 package net.tatans.coeus.alarm.activities;
 
-import com.iflytek.cloud.SpeechUtility;
-
 import net.tatans.coeus.network.tools.TatansApplication;
 
 /**
@@ -16,7 +14,7 @@ public class AlarmClockApplication  extends TatansApplication{
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        SpeechUtility.createUtility(AlarmClockApplication.this,"appid="+"579affe0");
+//        SpeechUtility.createUtility(AlarmClockApplication.this,"appid="+"579affe0");
     }
     public static AlarmClockApplication getInstance() {
         return sInstance;

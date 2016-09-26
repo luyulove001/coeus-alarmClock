@@ -3,38 +3,69 @@ package net.tatans.coeus.alarm.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.alarm.R;
-import net.tatans.coeus.network.tools.BaseActivity;
+import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.network.event.OnClick;
-import net.tatans.rhea.network.view.ContentView;
-import net.tatans.rhea.network.view.ViewIoc;
+import net.tatans.coeus.network.view.ViewInject;
 
 /**
  * Created by Administrator on 2016/5/30.
  */
-@ContentView(R.layout.activity_set_time_hour)
-public class SetAlarmTimeHourActivity extends BaseActivity {
-    @ViewIoc(R.id.tv_custom_hour_set)
-    TextView tv_custom_hour_set;
-    private int hour = 0, minute = 0;
+public class SetAlarmTimeHourActivity extends TatansActivity implements View.OnClickListener {
+    @ViewInject(id = R.id.tv_custom_hour_set)
+    TextView tvCustomHourSet;
+    @ViewInject(id = R.id.lyt_confirm, click = "onClick")
+    LinearLayout lytConfirm;
+    @ViewInject(id = R.id.add_one_hour, click = "onClick")
+    LinearLayout addOneHour;
+    @ViewInject(id = R.id.minus_one_hour, click = "onClick")
+    LinearLayout minusOneHour;
+    @ViewInject(id = R.id.add_five_hour, click = "onClick")
+    LinearLayout addFiveHour;
+    @ViewInject(id = R.id.minus_five_hour, click = "onClick")
+    LinearLayout minusFiveHour;
+    private int hour = 0;
+    private int minute = 0;
     private static final int RequestMinute = 010;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tv_custom_hour_set.setText(getIntent().getStringExtra("time_set"));
+        setContentView(R.layout.activity_set_time_hour);
+        tvCustomHourSet.setText(getIntent().getStringExtra("time_set"));
         splitText();
         setTitle("小时设置");
     }
 
-    @OnClick(R.id.lyt_confirm)
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.lyt_confirm:
+                confirm();
+                break;
+            case R.id.add_one_hour:
+                addOneHour();
+                break;
+            case R.id.minus_one_hour:
+                minusOneHour();
+                break;
+            case R.id.add_five_hour:
+                addFiveHour();
+                break;
+            case R.id.minus_five_hour:
+                minusFiveHour();
+                break;
+        }
+    }
+
     public void confirm() {
         TatansToast.showAndCancel("确定");
         Intent i = new Intent(this, SetAlarmTimeMinuteActivity.class);
-        i.putExtra("hour", tv_custom_hour_set.getText().toString());
+        i.putExtra("hour", tvCustomHourSet.getText().toString());
         startActivityForResult(i, RequestMinute);
     }
 
@@ -47,36 +78,32 @@ public class SetAlarmTimeHourActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.add_one_hour)
     public void addOneHour() {
-        tv_custom_hour_set.setText(calculateTime(false, 1, getHour(), getMinute()));
+        tvCustomHourSet.setText(calculateTime(false, 1, getHour(), getMinute()));
         splitText();
         TatansToast.showAndCancel(AddAlarmActivity.changeTimeStyle(hour) + ":" + AddAlarmActivity.changeTimeStyle(minute));
     }
 
-    @OnClick(R.id.minus_one_hour)
     public void minusOneHour() {
-        tv_custom_hour_set.setText(calculateTime(false, -1, getHour(), getMinute()));
+        tvCustomHourSet.setText(calculateTime(false, -1, getHour(), getMinute()));
         splitText();
         TatansToast.showAndCancel(AddAlarmActivity.changeTimeStyle(hour) + ":" + AddAlarmActivity.changeTimeStyle(minute));
     }
 
-    @OnClick(R.id.add_five_hour)
     public void addFiveHour() {
-        tv_custom_hour_set.setText(calculateTime(false, 5, getHour(), getMinute()));
+        tvCustomHourSet.setText(calculateTime(false, 5, getHour(), getMinute()));
         splitText();
         TatansToast.showAndCancel(AddAlarmActivity.changeTimeStyle(hour) + ":" + AddAlarmActivity.changeTimeStyle(minute));
     }
 
-    @OnClick(R.id.minus_five_hour)
     public void minusFiveHour() {
-        tv_custom_hour_set.setText(calculateTime(false, -5, getHour(), getMinute()));
+        tvCustomHourSet.setText(calculateTime(false, -5, getHour(), getMinute()));
         splitText();
         TatansToast.showAndCancel(AddAlarmActivity.changeTimeStyle(hour) + ":" + AddAlarmActivity.changeTimeStyle(minute));
     }
 
     private void splitText() {
-        String[] time = tv_custom_hour_set.getText().toString().split(":");
+        String[] time = tvCustomHourSet.getText().toString().split(":");
         setHour(Integer.valueOf(time[0]));
         setMinute(Integer.valueOf(time[1]));
     }

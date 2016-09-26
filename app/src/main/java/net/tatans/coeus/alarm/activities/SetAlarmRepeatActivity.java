@@ -3,30 +3,27 @@ package net.tatans.coeus.alarm.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.adapter.AlarmRepeatAdapter;
-import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.Const;
-import net.tatans.coeus.network.tools.BaseActivity;
-import net.tatans.rhea.network.view.ContentView;
-import net.tatans.rhea.network.view.ViewIoc;
+import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.view.ViewInject;
 
 /**
  * Created by Administrator on 2016/5/27.
  */
-@ContentView(R.layout.activity_public_list)
-public class SetAlarmRepeatActivity extends BaseActivity {
-    @ViewIoc(R.id.lv_bell_time)
+public class SetAlarmRepeatActivity extends TatansActivity {
+    @ViewInject(id = R.id.lv_bell_time)
     private ListView lv_bell_time;
     private String mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lv_bell_time.setAdapter(new AlarmRepeatAdapter(SetAlarmRepeatActivity.this,getIntent()));
+        setContentView(R.layout.activity_public_list);
+        lv_bell_time.setAdapter(new AlarmRepeatAdapter(SetAlarmRepeatActivity.this, getIntent()));
     }
 
     @Override

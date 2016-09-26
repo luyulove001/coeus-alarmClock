@@ -200,6 +200,7 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/btn_confirm"
             android:layout_width="@dimen/btn_confirm_width"
             android:layout_height="@dimen/btn_confirm_height"
             android:layout_marginTop="4dp"

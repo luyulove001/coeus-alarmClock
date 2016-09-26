@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,45 +14,38 @@ import net.tatans.coeus.alarm.R;
 import net.tatans.coeus.alarm.bean.Alarm;
 import net.tatans.coeus.alarm.utils.Alarms;
 import net.tatans.coeus.alarm.utils.Const;
-import net.tatans.coeus.network.tools.BaseActivity;
+import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.network.event.OnClick;
-import net.tatans.rhea.network.view.ContentView;
-import net.tatans.rhea.network.view.ViewIoc;
+import net.tatans.coeus.network.view.ViewInject;
 
 /**
  * Created by cly on 2016/5/27.
  * 添加闹钟页面，也是设置闹钟页面
  */
-@ContentView(R.layout.activity_add_alarm)
-public class AddAlarmActivity extends BaseActivity {
+public class AddAlarmActivity extends TatansActivity implements View.OnClickListener {
     //无障碍设置ContentDescription
-    @ViewIoc(R.id.layout_alarm_time)
+    @ViewInject(id = R.id.layout_alarm_time, click = "onClick")
     private RelativeLayout layout_alarm_time;
-    @ViewIoc(R.id.layout_repeat)
+    @ViewInject(id = R.id.layout_repeat, click = "onClick")
     private LinearLayout layout_repeat;
-    @ViewIoc(R.id.layout_alarm_vibrate)
+    @ViewInject(id = R.id.layout_alarm_vibrate, click = "onClick")
     private RelativeLayout layout_alarm_vibrate;
-    @ViewIoc(R.id.layout_alert)
+    @ViewInject(id = R.id.layout_alert, click = "onClick")
     private RelativeLayout layout_alert;
-
-    @ViewIoc(R.id.layout_remarks)
+    @ViewInject(id = R.id.layout_remarks, click = "onClick")
     private RelativeLayout layout_remarks;//闹钟的备注
-
-    @ViewIoc(R.id.remarks_content)
+    @ViewInject(id = R.id.remarks_content)
     private TextView remarks_content; // 备注内容
-
-    @ViewIoc(R.id.switch_vibrate)
+    @ViewInject(id = R.id.switch_vibrate)
     private ImageView switch_vibrate;//震动
-
-    @ViewIoc(R.id.alarm_repeat)
+    @ViewInject(id = R.id.alarm_repeat)
     private TextView tv_alarm_repeat;//重复
-
-    @ViewIoc(R.id.alert)
+    @ViewInject(id = R.id.alert)
     private TextView tv_alert;//铃声
-
-    @ViewIoc(R.id.time_alarm)
+    @ViewInject(id = R.id.time_alarm)
     private TextView tv_alarm_time;//闹钟时间
+    @ViewInject(id = R.id.btn_confirm, click = "onClick")
+    private ImageView btn_confirm;//确定按钮
     private int mHour = 0, mMinute = 0;
 
     private boolean btnOnOff = false;
@@ -65,6 +59,7 @@ public class AddAlarmActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_alarm);
         Intent i = getIntent();
         mId = i.getIntExtra(Alarms.ALARM_ID, -1);
         Alarm alarm = null;
@@ -113,7 +108,30 @@ public class AddAlarmActivity extends BaseActivity {
         return h;
     }
 
-    @OnClick(R.id.layout_alarm_time)
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.layout_alarm_time:
+                setTime_alarm();
+                break;
+            case R.id.layout_repeat:
+                setAlarm_repeat();
+                break;
+            case R.id.layout_alert:
+                setAlert();
+                break;
+            case R.id.layout_remarks:
+                OnClickRemarks();
+                break;
+            case R.id.layout_alarm_vibrate:
+                setSwitch_vibrate();
+                break;
+            case R.id.btn_confirm:
+                confirm();
+                break;
+        }
+    }
+
     public void setTime_alarm() {
         intent = new Intent();
         intent.setClass(AddAlarmActivity.this, SetAlarmTimeHourActivity.class);
@@ -121,7 +139,6 @@ public class AddAlarmActivity extends BaseActivity {
         startActivityForResult(intent, Const.REQUEST_TIME);
     }
 
-    @OnClick(R.id.layout_repeat)
     public void setAlarm_repeat() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_REPEAT + "");
@@ -130,7 +147,6 @@ public class AddAlarmActivity extends BaseActivity {
         startActivityForResult(intent, Const.REQUEST_REPEAT);
     }
 
-    @OnClick(R.id.layout_alert)
     public void setAlert() {
         intent = new Intent();
         intent.putExtra("mark", Const.REQUEST_ALERT + "");
@@ -140,13 +156,11 @@ public class AddAlarmActivity extends BaseActivity {
 //        TatansStartActivity(SetAlarmRepeatActivity.class);
     }
 
-    @OnClick(R.id.layout_remarks)
-    public void OnClickRemarks(){
-        intent = new Intent(this,RemarksActivity.class);
-        startActivityForResult(intent,Const.REQUEST_LABEL);
+    public void OnClickRemarks() {
+        intent = new Intent(this, RemarksActivity.class);
+        startActivityForResult(intent, Const.REQUEST_LABEL);
     }
 
-    @OnClick(R.id.layout_alarm_vibrate)
     public void setSwitch_vibrate() {
         btnOnOff = !btnOnOff;
         switch_vibrate.setImageResource(btnOnOff ? R.mipmap.open_icon : R.mipmap.close_icon);
@@ -155,7 +169,6 @@ public class AddAlarmActivity extends BaseActivity {
                 getString(R.string.alarm_vibrate) + Const.NO_STR);
     }
 
-    @OnClick(R.id.lyt_confirm)
     public void confirm() {
         /**
          * tv_alarm_repeat --> alarm.daysOfWeek
@@ -173,6 +186,7 @@ public class AddAlarmActivity extends BaseActivity {
 
     /**
      * 根据id 添加/更新数据库中的alarm
+     *
      * @return
      */
     private long saveAlarm() {
@@ -184,8 +198,8 @@ public class AddAlarmActivity extends BaseActivity {
         alarm.daysOfWeek = newDaysOfWeek;
         alarm.vibrate = btnOnOff;
         alarm.alert = mAlert;
-        alarm.label =mLabel;
-        Log.e("antony", mId + ","+mHour + ","+mMinute + ","+newDaysOfWeek.toString(getApplicationContext(), true) + "," + btnOnOff + "," + mAlert+","+mLabel);
+        alarm.label = mLabel;
+        Log.e("antony", mId + "," + mHour + "," + mMinute + "," + newDaysOfWeek.toString(getApplicationContext(), true) + "," + btnOnOff + "," + mAlert + "," + mLabel);
 
         long time;
         if (alarm.id == -1) {
@@ -193,7 +207,7 @@ public class AddAlarmActivity extends BaseActivity {
             // addAlarm populates the alarm with the new id. Update mId so that
             // changes to other preferences update the new alarm.
             mId = alarm.id;
-            Log.e("antony", mId+"");
+            Log.e("antony", mId + "");
         } else {
             time = Alarms.setAlarm(this, alarm);
         }
@@ -220,7 +234,7 @@ public class AddAlarmActivity extends BaseActivity {
             mAlert = data.getStringExtra("bell_position");
             layout_alert.setContentDescription(getString(R.string.alert)
                     + "。" + data.getStringExtra("bell_uri"));
-        }else if(requestCode == Const.REQUEST_LABEL && resultCode == Activity.RESULT_OK){
+        } else if (requestCode == Const.REQUEST_LABEL && resultCode == Activity.RESULT_OK) {
             remarks_content.setText(data.getStringExtra("label"));
             mLabel = data.getStringExtra("label");
         }
@@ -229,6 +243,6 @@ public class AddAlarmActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        layout_remarks.setContentDescription("闹钟备注，"+remarks_content.getText().toString());
+        layout_remarks.setContentDescription("闹钟备注，" + remarks_content.getText().toString());
     }
 }

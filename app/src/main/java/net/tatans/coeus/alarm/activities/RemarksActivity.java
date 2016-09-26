@@ -10,25 +10,22 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import net.tatans.coeus.alarm.R;
-import net.tatans.coeus.network.tools.BaseActivity;
+import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.network.event.OnClick;
-import net.tatans.rhea.network.view.ContentView;
-import net.tatans.rhea.network.view.ViewIoc;
+import net.tatans.coeus.network.view.ViewInject;
 
 /**
  * Created by LCM on 2016/9/5. 10:00
  * 写备注页面
  */
 
-@ContentView(R.layout.remarks)
-public class RemarksActivity extends BaseActivity {
+public class RemarksActivity extends TatansActivity {
     //获取视图
-    @ViewIoc(R.id.edit_remarks)
+    @ViewInject(id = R.id.edit_remarks)
     private EditText edit_remarks;
-    @ViewIoc(R.id.btn_voice)
+    @ViewInject(id = R.id.btn_voice, click = "onClick")
     private Button btn_voice;
-    @ViewIoc(R.id.btn_determine)
+    @ViewInject(id = R.id.btn_determine, click = "onClick")
     private Button btn_determine;
 
     private Intent intent = null;
@@ -36,6 +33,7 @@ public class RemarksActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.remarks);
         setTitle("备注");
         btn_voice.setContentDescription("语音输入。");
         btn_determine.setContentDescription("确定。");
@@ -45,7 +43,6 @@ public class RemarksActivity extends BaseActivity {
     /**
      * 点击确定按钮
      */
-    @OnClick(R.id.btn_determine)
     private void onClickDetermine() {
         intent = new Intent();
         if (!edit_remarks.getText().toString().equals("") && edit_remarks.getText().toString() != null) {
@@ -60,7 +57,6 @@ public class RemarksActivity extends BaseActivity {
     /**
      * 点击语音输入
      */
-    @OnClick(R.id.btn_voice)
     private void onClickVoice() {
         onInputMethod(false);
         intent = new Intent();
@@ -72,7 +68,7 @@ public class RemarksActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 ) {
+        if (requestCode == 1) {
             if (data.getStringExtra("label").equals("")) {
                 TatansToast.showAndCancel("语音识别失败");
             } else {
